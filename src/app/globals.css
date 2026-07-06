@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Eik designsystem — tokens
+   Skriftvariabler (--font-archivo / --font-source-serif)
+   injiseres av next/font i layout.tsx
+   ========================================================= */
+
+@theme {
+  /* ---- Skriftfamilier ---- */
+  --font-sans: var(--font-archivo), "Archivo", sans-serif;
+  --font-serif: var(--font-source-serif), "Source Serif 4", serif;
+
+  /* ---- Nøytrale ---- */
+  --color-white: #ffffff;
+  --color-black: #1a2e2b;
+  --color-krem: #f7f4ef;
+
+  /* ---- Primary · Eik (grønn) ---- */
+  --color-eik-0: #ffffff;
+  --color-eik-5: #d4eeea;
+  --color-eik-10: #aaddd5;
+  --color-eik-20: #80ccc0;
+  --color-eik-30: #55bcab;
+  --color-eik-40: #2aab96;
+  --color-eik-50: #009a81;
+  --color-eik-60: #037a67;
+  --color-eik-70: #065a4c;
+  --color-eik-80: #0a3a32;
+  --color-eik-90: #0d1a18;
+
+  /* ---- Primary · Gray Storm ---- */
+  --color-storm-0: #ffffff;
+  --color-storm-5: #e7e8e8;
+  --color-storm-10: #ced2d1;
+  --color-storm-20: #b6bbba;
+  --color-storm-30: #9ea4a2;
+  --color-storm-40: #868e8b;
+  --color-storm-50: #6e7774;
+  --color-storm-60: #55615d;
+  --color-storm-70: #3d4a46;
+  --color-storm-80: #25322f;
+  --color-storm-90: #0d1a18;
+
+  /* ---- Secondary · Hav (blå) ---- */
+  --color-hav-0: #ffffff;
+  --color-hav-5: #dbeaf0;
+  --color-hav-10: #b6d4e1;
+  --color-hav-20: #92bfd2;
+  --color-hav-30: #6daac3;
+  --color-hav-40: #4995b4;
+  --color-hav-50: #247fa5;
+  --color-hav-60: #006a96;
+  --color-hav-70: #044f6c;
+  --color-hav-80: #093542;
+  --color-hav-90: #0d1a18;
+
+  /* ---- Secondary · Solgul ---- */
+  --color-solgul-0: #ffffff;
+  --color-solgul-5: #faecd8;
+  --color-solgul-10: #f6d9b1;
+  --color-solgul-20: #f1c78a;
+  --color-solgul-30: #edb463;
+  --color-solgul-40: #e8a13c;
+  --color-solgul-50: #bc8635;
+  --color-solgul-60: #906b2e;
+  --color-solgul-70: #655026;
+  --color-solgul-80: #39351f;
+  --color-solgul-90: #0d1a18;
+
+  /* ---- Secondary · Klementin (oransje) ---- */
+  --color-klementin-0: #ffffff;
+  --color-klementin-5: #fbe6dc;
+  --color-klementin-10: #f7ccb9;
+  --color-klementin-20: #f4b296;
+  --color-klementin-30: #f09974;
+  --color-klementin-40: #ec8051;
+  --color-klementin-50: #e8662e;
+  --color-klementin-60: #b15328;
+  --color-klementin-70: #7a4023;
+  --color-klementin-80: #442d1e;
+  --color-klementin-90: #0d1a18;
+
+  /* ---- Secondary · Plomme (lilla) ---- */
+  --color-plomme-0: #ffffff;
+  --color-plomme-5: #ece5ef;
+  --color-plomme-10: #dacbde;
+  --color-plomme-20: #c7b1ce;
+  --color-plomme-30: #b598bd;
+  --color-plomme-40: #a27ead;
+  --color-plomme-50: #90649c;
+  --color-plomme-60: #7d4a8c;
+  --color-plomme-70: #583a65;
+  --color-plomme-80: #322a3f;
+  --color-plomme-90: #0d1a18;
+
+  /* ---- Semantikk · Suksess ---- */
+  --color-suksess-0: #ffffff;
+  --color-suksess-5: #dee9e2;
+  --color-suksess-10: #bed3c4;
+  --color-suksess-50: #3b7a4f;
+  --color-suksess-90: #0d1a18;
+
+  /* ---- Semantikk · Advarsel ---- */
+  --color-advarsel-0: #ffffff;
+  --color-advarsel-5: #eee4da;
+  --color-advarsel-10: #ddc8b4;
+  --color-advarsel-50: #9a5b1f;
+  --color-advarsel-90: #0d1a18;
+
+  /* ---- Semantikk · Feil ---- */
+  --color-feil-0: #ffffff;
+  --color-feil-5: #f0dedc;
+  --color-feil-10: #e1bdb9;
+  --color-feil-50: #a63a2e;
+  --color-feil-90: #0d1a18;
+
+  /* ---- Semantikk · Info ---- */
+  --color-info-0: #ffffff;
+  --color-info-5: #d4e6ee;
+  --color-info-10: #aacddc;
+  --color-info-50: #006a96;
+  --color-info-90: #0d1a18;
+
+  /* ---- Skygger ---- */
+  --shadow-xs: 0px 2px 8px -2px rgba(26, 46, 43, 0.09);
+  --shadow-s: 0px 4px 12px -2px rgba(26, 46, 43, 0.12);
+  --shadow-m: 0px 8px 24px -4px rgba(26, 46, 43, 0.12);
+  --shadow-l: 0px 14px 36px -7px rgba(26, 46, 43, 0.17);
+  --shadow-xl: 0px 18px 48px -8px rgba(26, 46, 43, 0.18);
+  --shadow-2xl: 0px 24px 56px -8px rgba(26, 46, 43, 0.2);
+  --shadow-3xl: 0px 28px 68px -12px rgba(26, 46, 43, 0.22);
+}
+
+/* =========================================================
+   Basis
+   ========================================================= */
+body {
+  background: var(--color-krem);
+  color: var(--color-black);
+  font-family: var(--font-serif);
+}
+
+/* =========================================================
+   Tekststiler fra Eik — som utilities (@layer components)
+   Bruk via className, f.eks. <h1 className="title-xl">
+   ========================================================= */
+@layer components {
+  .title-xxl       { font-family: var(--font-sans); font-weight: 700; font-size: 144px; line-height: 154px; letter-spacing: -0.03em; }
+  .title-xl        { font-family: var(--font-sans); font-weight: 700; font-size: 115px; line-height: 125px; letter-spacing: -0.02em; }
+  .title-xl-black  { font-family: var(--font-sans); font-weight: 900; font-size: 115px; line-height: 125px; letter-spacing: -0.02em; }
+  .title-l         { font-family: var(--font-sans); font-weight: 700; font-size: 91px;  line-height: 98px;  letter-spacing: -0.02em; }
+  .title-l-black   { font-family: var(--font-sans); font-weight: 900; font-size: 91px;  line-height: 98px;  letter-spacing: -0.02em; }
+  .title-m         { font-family: var(--font-sans); font-weight: 700; font-size: 77px;  line-height: 86px;  letter-spacing: -0.01em; }
+  .title-m-black   { font-family: var(--font-sans); font-weight: 900; font-size: 77px;  line-height: 86px;  letter-spacing: -0.01em; }
+  .title-s         { font-family: var(--font-sans); font-weight: 700; font-size: 58px;  line-height: 67px;  letter-spacing: -0.01em; }
+  .title-xs        { font-family: var(--font-sans); font-weight: 700; font-size: 43px;  line-height: 53px;  letter-spacing: 0; }
+
+  .text-xxl             { font-family: var(--font-serif); font-weight: 400; font-size: 43px; line-height: 55px; }
+  .text-xxl-bold        { font-family: var(--font-serif); font-weight: 700; font-size: 43px; line-height: 55px; }
+  .text-xxl-italic      { font-family: var(--font-serif); font-weight: 400; font-size: 43px; line-height: 55px; font-style: italic; }
+  .text-xxl-bold-italic { font-family: var(--font-serif); font-weight: 700; font-size: 43px; line-height: 55px; font-style: italic; }
+  .text-xl              { font-family: var(--font-serif); font-weight: 400; font-size: 29px; line-height: 41px; }
+  .text-xl-bold         { font-family: var(--font-serif); font-weight: 700; font-size: 29px; line-height: 41px; }
+  .text-xl-italic       { font-family: var(--font-serif); font-weight: 400; font-size: 29px; line-height: 41px; font-style: italic; }
+  .text-xl-bold-italic  { font-family: var(--font-serif); font-weight: 700; font-size: 29px; line-height: 41px; font-style: italic; }
+  .text-l               { font-family: var(--font-serif); font-weight: 400; font-size: 24px; line-height: 36px; }
+  .text-l-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 24px; line-height: 36px; }
+  .text-l-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 24px; line-height: 36px; font-style: italic; }
+  .text-l-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 24px; line-height: 36px; font-style: italic; }
+  .text-m               { font-family: var(--font-serif); font-weight: 400; font-size: 19px; line-height: 29px; }
+  .text-m-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 19px; line-height: 29px; }
+  .text-m-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 19px; line-height: 29px; font-style: italic; }
+  .text-m-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 19px; line-height: 29px; font-style: italic; }
+  .text-s               { font-family: var(--font-serif); font-weight: 400; font-size: 17px; line-height: 24px; }
+  .text-s-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 17px; line-height: 24px; }
+  .text-s-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 17px; line-height: 24px; font-style: italic; }
+  .text-s-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 17px; line-height: 24px; font-style: italic; }
+  .text-xs              { font-family: var(--font-serif); font-weight: 400; font-size: 14px; line-height: 22px; }
+  .text-xs-bold         { font-family: var(--font-serif); font-weight: 700; font-size: 14px; line-height: 22px; }
+  .text-xs-italic       { font-family: var(--font-serif); font-weight: 400; font-size: 14px; line-height: 22px; font-style: italic; }
+  .text-xs-bold-italic  { font-family: var(--font-serif); font-weight: 700; font-size: 14px; line-height: 22px; font-style: italic; }
+
+  .tag-xl       { font-family: var(--font-sans); font-weight: 400; font-size: 31px; line-height: 38px; letter-spacing: -0.01em; }
+  .tag-xl-bold  { font-family: var(--font-sans); font-weight: 700; font-size: 31px; line-height: 38px; letter-spacing: -0.01em; }
+  .tag-l        { font-family: var(--font-sans); font-weight: 400; font-size: 24px; line-height: 34px; letter-spacing: -0.01em; }
+  .tag-l-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 24px; line-height: 34px; letter-spacing: -0.01em; }
+  .tag-m        { font-family: var(--font-sans); font-weight: 400; font-size: 19px; line-height: 25px; letter-spacing: -0.01em; }
+  .tag-m-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 19px; line-height: 25px; letter-spacing: -0.01em; }
+  .tag-s        { font-family: var(--font-sans); font-weight: 400; font-size: 16px; line-height: 23px; letter-spacing: -0.01em; }
+  .tag-s-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 16px; line-height: 23px; letter-spacing: -0.01em; }
+  .tag-xs       { font-family: var(--font-sans); font-weight: 400; font-size: 12px; line-height: 16px; letter-spacing: -0.01em; }
+  .tag-xs-bold  { font-family: var(--font-sans); font-weight: 700; font-size: 12px; line-height: 16px; letter-spacing: -0.01em; }
+}
