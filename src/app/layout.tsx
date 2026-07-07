@@ -19,8 +19,9 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Eik",
-  description: "Eik",
+  title: "Eik Lab — Senter for studentinnovasjon",
+  description:
+    "Eik Lab er Senter for studentinnovasjon ved NMBU på Ås. Vi gir studenter verktøyene de trenger for å utforske, prototype og realisere idéer.",
 };
 
 export default function RootLayout({
