@@ -24,7 +24,7 @@ export default function ArrangementerPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20">
+        <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20 lg:px-16">
           <div className="mx-auto max-w-6xl">
             <p className="tag-s-bold uppercase tracking-widest text-black/60">
               Arrangementer
@@ -39,7 +39,7 @@ export default function ArrangementerPage() {
           </div>
         </section>
 
-        <section className="bg-krem px-6 py-24">
+        <section className="bg-krem px-6 py-24 lg:px-16">
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-6">
               {arrangementer.map((arr, index) => (

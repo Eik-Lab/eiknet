@@ -19,7 +19,7 @@ export function Header() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-6">
-      <nav className="flex w-full max-w-[1062px] items-center justify-between rounded-[50px] bg-white px-8 py-3 shadow-s">
+      <nav className="flex w-full max-w-6xl items-center justify-between rounded-[50px] bg-white px-8 py-3 shadow-s">
         <Link href="/">
           <img src="/spiregronn.svg" alt="Eik Lab" className="h-[36px] w-auto" />
         </Link>

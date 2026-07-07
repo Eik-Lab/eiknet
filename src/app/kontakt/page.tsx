@@ -13,7 +13,7 @@ export default function KontaktPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20">
+        <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20 lg:px-16">
           <div className="mx-auto max-w-6xl">
             <p className="tag-s-bold uppercase tracking-widest text-black/60">
               Kontakt
@@ -28,92 +28,34 @@ export default function KontaktPage() {
           </div>
         </section>
 
-        <section className="bg-krem px-6 py-24">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="rounded-3xl bg-white p-8 shadow-s">
-                <h2 className="title-xs text-black">Send oss en melding</h2>
-                <form className="mt-8 space-y-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="tag-s-bold mb-2 block text-storm-70"
-                    >
-                      Navn
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      className="w-full rounded-xl border border-storm-10 bg-krem px-4 py-3 text-m text-black outline-none focus:border-eik-50"
-                      placeholder="Ola Nordmann"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="tag-s-bold mb-2 block text-storm-70"
-                    >
-                      E-post
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      className="w-full rounded-xl border border-storm-10 bg-krem px-4 py-3 text-m text-black outline-none focus:border-eik-50"
-                      placeholder="ola@nmbu.no"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="tag-s-bold mb-2 block text-storm-70"
-                    >
-                      Melding
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={5}
-                      className="w-full rounded-xl border border-storm-10 bg-krem px-4 py-3 text-m text-black outline-none focus:border-eik-50"
-                      placeholder="Hei! Jeg har en idé jeg vil diskutere..."
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="rounded-full bg-eik-50 px-8 py-4 tag-l-bold text-white shadow-m transition-transform hover:scale-105"
-                  >
-                    Send
-                  </button>
-                </form>
-              </div>
-
-              <div className="space-y-8">
-                <div className="rounded-3xl bg-white p-8 shadow-s">
-                  <h3 className="tag-l-bold text-eik-70">Besøk oss</h3>
-                  <address className="text-l mt-4 not-italic text-storm-70">
-                    <p>Kajaveien 7</p>
-                    <p>1433 Ås</p>
-                  </address>
-                </div>
-
-                <div className="rounded-3xl bg-white p-8 shadow-s">
-                  <h3 className="tag-l-bold text-eik-70">E-post</h3>
-                  <a
-                    href="mailto:post@eiklab.no"
-                    className="text-l mt-4 inline-block text-eik-60 underline-offset-4 hover:underline"
-                  >
-                    post@eiklab.no
-                  </a>
-                </div>
-
-                <div className="rounded-3xl bg-white p-8 shadow-s">
-                  <h3 className="tag-l-bold text-eik-70">Åpningstider</h3>
-                  <p className="text-l mt-4 text-storm-70">
-                    Man–fre: 09:00–17:00
-                  </p>
-                  <p className="text-l text-storm-70">
-                    Lør–søn: Etter avtale
-                  </p>
-                </div>
-              </div>
+        <section className="bg-krem px-6 py-32 lg:px-16">
+          <div className="mx-auto flex max-w-6xl flex-col items-center gap-12">
+            <a
+              href="mailto:christopher.ljosland.strand@nmbu.no,sania.minaipour@nmbu.no?subject=Interessert i Eik&cc=eiklab@nmbu.no"
+              className="inline-block rounded-full bg-eik-50 px-12 py-5 tag-l-bold text-white shadow-m transition-transform hover:scale-105"
+            >
+              Ta kontakt!
+            </a>
+            <div className="flex w-full flex-col gap-2 text-center sm:flex-row sm:justify-center sm:gap-8">
+              <address className="text-l not-italic text-storm-70">
+                Kajaveien 7, 1430 Ås
+              </address>
+              <a
+                href="mailto:eiklab@nmbu.no"
+                className="text-l text-eik-60 underline-offset-4 hover:underline"
+              >
+                eiklab@nmbu.no
+              </a>
+            </div>
+            <div className="w-full overflow-hidden rounded-3xl shadow-s">
+              <iframe
+                width="100%"
+                height="420"
+                title="Kart over Eik Lab ved NMBU"
+                style={{ border: 0, display: "block" }}
+                allow="geolocation"
+                src="https://use.mazemap.com/embed.html#v=1&campusid=241&zlevel=2&center=10.776958,59.665759&zoom=22&sharepoitype=identifier&sharepoi=TF fløy2-TF2-204&utm_medium=iframe"
+              />
             </div>
           </div>
         </section>

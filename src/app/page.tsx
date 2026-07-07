@@ -1,14 +1,15 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import MuxPlayer from "@mux/mux-player-react";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         {/* ── Hero ───────────────────────────────────────────── */}
-        <section className="relative min-h-screen overflow-hidden bg-krem">
+        <section className="relative min-h-screen bg-krem">
           {/* Green organic blob */}
           <div
             className="pointer-events-none absolute"
@@ -33,17 +34,17 @@ export default function Home() {
           {/* Blue organic blob */}
           <div
             className="pointer-events-none absolute"
-            style={{ bottom: -80, right: -200, width: 700, height: 700, zIndex: 0 }}
+            style={{ bottom: -200, right: -200, width: 800, height: 800, zIndex: 0 }}
             aria-hidden="true"
           >
-            <svg width="100%" height="100%" viewBox="0 0 700 700" preserveAspectRatio="none" overflow="visible">
+            <svg width="100%" height="100%" viewBox="0 0 800 800" preserveAspectRatio="none" overflow="visible">
               <defs>
                 <filter id="blob-blue" x="-50%" y="-50%" width="200%" height="200%">
                   <feGaussianBlur stdDeviation="60" result="blur" />
                 </filter>
               </defs>
               <path
-                d="M 350,100 C 480,70 580,140 620,250 C 660,360 580,480 480,540 C 380,600 200,580 120,480 C 40,380 60,250 120,170 C 180,90 250,70 300,90 C 330,100 340,110 350,100 Z"
+                d="M 400,120 C 540,80 660,160 710,280 C 760,400 660,540 540,610 C 420,680 220,660 140,540 C 60,420 80,280 140,190 C 200,100 280,80 340,100 C 360,110 380,120 400,120 Z"
                 fill="#6DAAC3"
                 opacity="0.45"
                 filter="url(#blob-blue)"
@@ -51,70 +52,60 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="absolute bottom-32 left-8 z-10 lg:left-16">
-            <p className="tag-m-bold text-black lg:tag-l-bold">Av studenter</p>
-            <p className="tag-m-bold text-black lg:tag-l-bold">For studenter</p>
-          </div>
-
-          <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pb-32 pt-40 text-center">
-            <h1 className="title-xs text-black sm:title-s lg:title-xl">
-              EIK LAB
-            </h1>
-            <p className="tag-l mt-4 text-black/80 lg:tag-xl">
-              Senter for studentinnovasjon
-            </p>
-            <div className="mt-10 flex items-center gap-4">
-              <Link
-                href="/om"
-                className="tag-s rounded-[50px] border-2 border-black px-7 py-3 font-bold text-black transition-colors hover:bg-black hover:text-krem"
-              >
-                Bli med
-              </Link>
-              <Link
-                href="/prosjekter"
-                className="tag-s rounded-[50px] border-2 border-black px-7 py-3 font-bold text-black transition-colors hover:bg-black hover:text-krem"
-              >
-                Prosjekter
-              </Link>
+          <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-16 px-4 pb-32 pt-58">
+            
+            <div className="flex flex-col items-center text-center">
+              <h1 className="title-xs text-black sm:title-s lg:title-xl">
+                EIK LAB
+              </h1>
+              <p className="tag-l mt-4 text-black/80 lg:tag-xl">
+                Senter for studentinnovasjon
+              </p>
+              <div className="mt-10 flex items-center gap-4">
+                <Link
+                  href="/om"
+                  className="tag-s rounded-[50px] border-2 border-black px-7 py-3 font-bold text-black transition-colors hover:bg-black hover:text-krem"
+                >
+                  Bli med
+                </Link>
+                <Link
+                  href="/prosjekter"
+                  className="tag-s rounded-[50px] border-2 border-black px-7 py-3 font-bold text-black transition-colors hover:bg-black hover:text-krem"
+                >
+                  Prosjekter
+                </Link>
+              </div>
+            </div>
+            <div className="w-full overflow-hidden rounded-[32px]">
+              <MuxPlayer
+                streamType="on-demand"
+                playbackId={process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID!}
+                className="aspect-video w-full [--controls:none]"
+                autoPlay
+                muted
+                loop
+              />
             </div>
           </div>
         </section>
 
         {/* ── About: Hva er Eik Lab? ─────────────────────────── */}
         <section className="px-6 py-24 lg:px-16">
-          <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="title-xs text-black lg:title-m">
-                Hva er<br />Eik Lab?
-              </h2>
-              <p className="text-m mt-6 text-black/75 lg:text-l">
-                Eik Lab er et senter for studentinnovasjon ved NMBU. Vi er et
-                fellesskap av engasjerte studenter som skaper, eksperimenterer
-                og bygger fremtidens løsninger — sammen.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { num: "200+", label: "Aktive studenter" },
-                { num: "30+", label: "Pågående prosjekter" },
-                { num: "5", label: "Faglige spor" },
-                { num: "2019", label: "Etablert" },
-              ].map(({ num, label }) => (
-                <div
-                  key={label}
-                  className="flex flex-col gap-1 rounded-3xl bg-white p-6 shadow-s"
-                >
-                  <span className="tag-l-bold text-eik-70">{num}</span>
-                  <span className="tag-xs text-black/70">{label}</span>
-                </div>
-              ))}
-            </div>
+          <div className="mx-auto max-w-6xl">
+            <h2 className="title-xs text-black lg:title-m">
+              Hva er<br />Eik Lab?
+            </h2>
+            <p className="text-m mt-6 max-w-3xl text-black/75 lg:text-l">
+              Eik Lab er et senter for studentinnovasjon ved NMBU. Vi er et
+              fellesskap av engasjerte studenter som skaper, eksperimenterer
+              og bygger fremtidens løsninger.
+            </p>
           </div>
         </section>
 
         {/* ── Projects: Prosjekter ───────────────────────────── */}
         <section className="px-6 py-24 lg:px-16">
-          <div className="mx-auto max-w-[1200px]">
+          <div className="mx-auto max-w-6xl">
             <h2 className="title-xs mb-12 text-black lg:title-m">Prosjekter</h2>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {[
@@ -162,7 +153,7 @@ export default function Home() {
 
         {/* ── Opportunities: Muligheter ─────────────────────── */}
         <section className="bg-storm-5 px-6 py-24 lg:px-16">
-          <div className="mx-auto max-w-[1200px]">
+          <div className="mx-auto max-w-6xl">
             <h2 className="title-xs mb-12 text-black lg:title-m">Muligheter</h2>
             <div className="grid gap-5 sm:grid-cols-2">
               {[
@@ -194,7 +185,7 @@ export default function Home() {
 
         {/* ── Events: Arrangementer ─────────────────────────── */}
         <section className="px-6 py-24 lg:px-16">
-          <div className="mx-auto max-w-[1200px]">
+          <div className="mx-auto max-w-6xl">
             <h2 className="title-xs mb-12 text-black lg:title-m">
               Arrangementer
             </h2>
