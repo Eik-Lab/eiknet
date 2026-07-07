@@ -1,39 +1,31 @@
-import { BuildingMark } from "./building-mark";
+import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="mt-auto bg-eik-90 text-krem">
-      <div className="mx-auto max-w-6xl px-6 pt-16">
-        <div className="flex flex-wrap items-start justify-between gap-8">
-          <div>
-            <p className="tag-l-bold">Eik Lab</p>
-            <p className="text-s mt-2 text-krem/80">Kajaveien 7, 1433 Ås</p>
-            <a
-              href="mailto:post@eiklab.no"
-              className="text-s text-krem/90 underline-offset-4 hover:underline"
-            >
-              post@eiklab.no
-            </a>
-          </div>
-          <nav className="flex flex-col gap-1">
-            <a href="#" className="tag-s text-krem/80 hover:text-krem">Om oss</a>
-            <a href="#" className="tag-s text-krem/80 hover:text-krem">Prosjekter</a>
-            <a href="#" className="tag-s text-krem/80 hover:text-krem">Muligheter</a>
-            <a href="#" className="tag-s text-krem/80 hover:text-krem">Kontakt</a>
-          </nav>
+    <footer className="px-6 pb-6 lg:px-10">
+      <div className="flex flex-col items-start justify-between gap-10 rounded-[25px] bg-eik-60 px-8 py-14 lg:flex-row lg:items-center lg:px-10 lg:py-16">
+        <div className="flex flex-col gap-1">
+          <span className="tag-l-bold text-white">EIK LAB</span>
+          <span className="tag-xs text-white/60">
+            Senter for studentinnovasjon
+          </span>
         </div>
-      </div>
-
-      {/* Bygningstegning */}
-      <div className="mx-auto mt-10 max-w-4xl px-6">
-        <BuildingMark className="w-full" />
-      </div>
-
-      <div className="border-t border-krem/15">
-        <div className="mx-auto max-w-6xl px-6 py-6">
-          <p className="text-xs text-krem/60">
-            © {new Date().getFullYear()} Eik Lab · NMBU
-          </p>
+        <div className="flex flex-col gap-1">
+          <span className="tag-m font-semibold text-white">Kajaveien 7</span>
+          <span className="tag-m font-semibold text-white">1433 Ås</span>
+        </div>
+        <Link
+          href="/kontakt"
+          className="tag-m font-semibold text-white transition-colors hover:text-white/70"
+        >
+          Kontakt
+        </Link>
+        <div className="hidden shrink-0 lg:block">
+          <img
+            src="/greyEik.svg"
+            alt="Eik Lab"
+            className="h-[120px] w-auto opacity-40"
+          />
         </div>
       </div>
     </footer>

@@ -20,8 +20,8 @@ export function Header() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-6">
       <nav className="flex w-full max-w-[1062px] items-center justify-between rounded-[50px] bg-white px-8 py-3 shadow-s">
-        <Link href="/" className="tag-l-bold text-black">
-          EIK LAB
+        <Link href="/">
+          <img src="/spiregronn.svg" alt="Eik Lab" className="h-[36px] w-auto" />
         </Link>
         <div className="hidden items-center gap-6 md:flex">
           {links.map((link) => {
@@ -30,7 +30,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`tag-s transition-colors ${
+                className={`tag-m transition-colors ${
                   isActive
                     ? "font-bold text-black"
                     : "text-black/60 hover:text-black"
@@ -69,7 +69,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="tag-s text-black/80"
+              className="tag-m text-black/80"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
