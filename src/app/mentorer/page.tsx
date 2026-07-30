@@ -10,34 +10,58 @@ export const metadata: Metadata = {
 
 const mentors = [
   {
-    name: "Professor Lars Andersen",
-    field: "Maskinteknikk",
-    bio: "Professor ved REALTEK med lang erfaring fra produktutvikling og prototyping. Veileder flere studentteam innen hardware.",
+    name: "Håkon Bekken",
+    field: "Anvendt robotikk - Robotdesign",
+    url: "https://www.nmbu.no/studier/master-5-aar/anvendt-robotikk",
+    bio: "Student ved NMBU med fokus på robotdesign og CAD. Jobber med å gjøre robotteknologi tilgjengelig for studentprosjekter på tvers av fagfelt.",
   },
   {
-    name: "Ingrid Nygaard",
-    field: "Bærekraft",
-    bio: "Miljørådgiver og tidligere student ved Eik Lab. Hjelper nye team med å definere problemstillinger og finne bærekraftige løsninger.",
+    name: "Jørgen Asmundvaag",
+    field: "Anvendt robotikk - Robotprogrammering",
+    url: "https://www.nmbu.no/studier/master-5-aar/anvendt-robotikk",
+    bio: "Student og robotikk-entusiast. Bistår prosjekter med mekatronikk, sensorintegrering og automasjon.",
   },
   {
-    name: "Dr. Erik Solheim",
-    field: "AI / Maskinlæring",
-    bio: "Forsker og gründer med bakgrunn fra deep tech. Veileder studentprosjekter innen maskinlæring og dataanalyse.",
+    name: "Ludvik Høibjerg-Aslaksen",
+    field: "Anvendt robotikk - Robotprogrammering",
+    url: "https://www.nmbu.no/studier/master-5-aar/anvendt-robotikk",
+    bio: "Engasjert i robotikk og elektronikk. Veileder studenter innen maskinlæring for robotstyring og prototyping.",
   },
   {
-    name: "Mona Kvam",
-    field: "Design Thinking",
-    bio: "Designer og innovasjonskonsulent. Fasiliterer workshops og hjelper team med å komme fra idé til prototype.",
+    name: "Christopher Ljosland Strand",
+    field: "Anvendt robotikk - Robotprogrammering",
+    url: "https://www.nmbu.no/studier/master-5-aar/anvendt-robotikk",
+    bio: "Student med lidenskap for robotikk. Hjelper andre studenter med å komme i gang med hardware-prosjekter og robotplattformer.",
   },
   {
-    name: "Christian Moe",
-    field: "Entreprenørskap",
-    bio: "Seriegründer og investor. Gir råd om forretningsutvikling, markedsføring og veien fra studentprosjekt til startup.",
+    name: "Frederic Ljosland Strand",
+    field: "Anvendt robotikk - Robotprogrammering",
+    url: "https://www.nmbu.no/studier/master-5-aar/anvendt-robotikk",
+    bio: "Studentmedarbeider med erfaring innen robotikk og systemintegrasjon. Veileder prosjekter fra idé til fungerende prototype.",
   },
   {
-    name: "Tone Haugen",
-    field: "Bioteknologi",
-    bio: "Postdoktor ved BIOVIT med forskningsinteresse innen syntetisk biologi. Veileder prosjekter i grenselandet mellom biologi og teknologi.",
+    name: "Ivar Eftedal",
+    field: "Indøk data",
+    url: "https://www.nmbu.no/studier/master-5-aar/industriell-okonomi",
+    bio: "Industriell økonomi-student med interesse for forretningsutvikling og innovasjonsledelse. Hjelper team med å strukturere prosjektene sine.",
+  },
+  {
+    name: "Sania Minaipour",
+    field: "Indøk data",
+    url: "https://www.nmbu.no/studier/master-5-aar/industriell-okonomi",
+    bio: "Student i industriell økonomi. Bistår med forretningsmodellering, markedsanalyse og prosjektstyring.",
+  },
+  {
+    name: "Milad Tootoonchi",
+    field: "Datavitenskap",
+    url: "https://www.nmbu.no/studier/master-5-aar/datavitenskap",
+    bio: "Datavitenskapsstudent med kompetanse innen maskinlæring, dataanalyse og programvareutvikling. Veileder team som trenger teknisk spissing.",
+  },
+  {
+    name: "Victor Moneta",
+    field: "Indøk maskin",
+    url: "https://www.nmbu.no/studier/master-5-aar/industriell-okonomi",
+    bio: "Indøk-student med erfaring fra CAD og studententreprenørskap. Hjelper team med å validere idéer og finne veien til markedet.",
   },
 ];
 
@@ -51,7 +75,7 @@ export default function MentorerPage() {
             <p className="tag-s-bold uppercase tracking-widest text-black/60">
               Mentorer
             </p>
-            <h1 className="title-l mt-4 text-black">
+            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
               Veiledere fra akademia og næringsliv
             </h1>
             <p className="text-xl mt-6 max-w-2xl text-storm-70">
@@ -70,10 +94,15 @@ export default function MentorerPage() {
                   className="rounded-3xl bg-white p-8 shadow-s"
                 >
                   <div className="mb-5 h-16 w-16 rounded-full bg-eik-5" />
-                  <span className="tag-s-bold text-eik-60">
+                  <a
+                    href={mentor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tag-s-bold text-eik-60 underline-offset-2 hover:underline"
+                  >
                     {mentor.field}
-                  </span>
-                  <h2 className="title-xs mt-2 text-black">{mentor.name}</h2>
+                  </a>
+                  <h2 className="text-l-bold mt-2 text-black lg:title-xs">{mentor.name}</h2>
                   <p className="text-m mt-3 text-storm-70">{mentor.bio}</p>
                 </article>
               ))}

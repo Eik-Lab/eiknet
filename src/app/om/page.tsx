@@ -9,10 +9,8 @@ export const metadata: Metadata = {
 };
 
 const team = [
-  { name: "Kari Nordmann", role: "Daglig leder" },
-  { name: "Ola Nordmann", role: "Faglig veileder" },
-  { name: "Maria Solberg", role: "Prosjektleder" },
-  { name: "Andre Berg", role: "Teknisk ansvarlig" },
+  { name: "Kristian Omberg", role: "Daglig leder" },
+  { name: "Ola Omberg", role: "Daglig leder" },
 ];
 
 export default function OmPage() {
@@ -25,7 +23,7 @@ export default function OmPage() {
             <p className="tag-s-bold uppercase tracking-widest text-black/60">
               Om oss
             </p>
-            <h1 className="title-l mt-4 text-black">
+            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
               Senter for studentinnovasjon
             </h1>
             <p className="text-xl mt-6 max-w-3xl text-storm-70">
@@ -39,9 +37,9 @@ export default function OmPage() {
 
         <section className="bg-krem px-6 py-24 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <div className="grid gap-16 lg:grid-cols-2">
+            <div className="grid gap-16">
               <div>
-                <h2 className="title-m text-black">Hva vi gjør</h2>
+                <h2 className="title-xs text-black sm:title-s lg:title-m">Hva vi gjør</h2>
                 <p className="text-xl mt-4 text-storm-70">
                   Vi tilbyr et åpent lab-miljø der studenter fra alle
                   fakulteter kan jobbe med egne prosjekter, delta på workshops
@@ -49,26 +47,13 @@ export default function OmPage() {
                   de beste idéene oppstår når nysgjerrighet, tverrfaglig
                   samarbeid og tilgang på verktøy møtes.
                 </p>
-                <h2 className="title-m mt-14 text-black">Historien</h2>
+                <h2 className="title-xs mt-14 text-black sm:title-s lg:title-m">Historien</h2>
                 <p className="text-xl mt-4 text-storm-70">
                   Eik Lab ble etablert som et svar på studenters ønske om et
                   fysisk sted for innovasjon og prototyping på campus Ås. Siden
                   oppstarten har vi vært vert for alt fra miljøteknologi til
                   digitale tjenester — alltid med studenten i førersetet.
                 </p>
-              </div>
-              <div className="rounded-3xl bg-white p-8 shadow-s">
-                <h3 className="tag-l-bold text-eik-70">Kontakt</h3>
-                <address className="text-l mt-6 not-italic text-storm-70">
-                  <p>Kajaveien 7</p>
-                  <p>1433 Ås</p>
-                  <a
-                    href="mailto:post@eiklab.no"
-                    className="mt-4 inline-block text-eik-60 underline-offset-4 hover:underline"
-                  >
-                    post@eiklab.no
-                  </a>
-                </address>
               </div>
             </div>
           </div>
@@ -80,7 +65,7 @@ export default function OmPage() {
               Teamet
             </p>
             <h2 className="title-s mt-3 text-black">Folka bak Eik Lab</h2>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {team.map((member) => (
                 <div
                   key={member.name}
@@ -91,6 +76,14 @@ export default function OmPage() {
                   <p className="text-s text-storm-70">{member.role}</p>
                 </div>
               ))}
+            </div>
+            <div className="mt-8 rounded-2xl bg-eik-5 p-8 shadow-s">
+              <h3 className="tag-l-bold text-eik-70">Studenter</h3>
+              <p className="text-m mt-3 text-storm-70">
+                Eik Lab drives av en engasjert gjeng studentmentorer fra
+                ulike studier ved NMBU. Sammen skaper de et miljø der
+                innovasjon og tverrfaglig samarbeid blomstrer.
+              </p>
             </div>
           </div>
         </section>

@@ -18,12 +18,12 @@ export default function KontaktPage() {
             <p className="tag-s-bold uppercase tracking-widest text-black/60">
               Kontakt
             </p>
-            <h1 className="title-l mt-4 text-black">
+            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
               Kom i kontakt med oss
             </h1>
             <p className="text-xl mt-6 max-w-2xl text-storm-70">
               Har du en idé du vil utforske? Eller lurer du på hvordan du kan
-              bli involvert? Ta gjerne kontakt.
+              bli involvert? Ta gjerne kontakt. 
             </p>
           </div>
         </section>
@@ -37,6 +37,9 @@ export default function KontaktPage() {
               Ta kontakt!
             </a>
             <div className="flex w-full flex-col gap-2 text-center sm:flex-row sm:justify-center sm:gap-8">
+              <p className="text-l text-storm-70">
+                Eller kom innom oss på Eik Lab på TF2-204
+              </p>
               <address className="text-l not-italic text-storm-70">
                 Kajaveien 7, 1430 Ås
               </address>
@@ -50,7 +53,8 @@ export default function KontaktPage() {
             <div className="w-full overflow-hidden rounded-3xl shadow-s">
               <iframe
                 width="100%"
-                height="420"
+                height="280"
+                className="sm:h-[420px]"
                 title="Kart over Eik Lab ved NMBU"
                 style={{ border: 0, display: "block" }}
                 allow="geolocation"

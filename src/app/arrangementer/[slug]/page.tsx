@@ -40,7 +40,7 @@ export default async function ArrangementSide({ params }: Props) {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20">
           <div className="mx-auto max-w-3xl">
             <Link

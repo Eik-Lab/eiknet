@@ -28,7 +28,7 @@ export default function ProsjekterPage() {
             <p className="tag-s-bold uppercase tracking-widest text-black/60">
               Prosjekter
             </p>
-            <h1 className="title-l mt-4 text-black">
+            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
               Studentdrevne innovasjonsprosjekter
             </h1>
             <p className="text-xl mt-6 max-w-2xl text-storm-70">
@@ -56,12 +56,17 @@ export default function ProsjekterPage() {
                       {prosjekt.status}
                     </span>
                   </div>
-                  <h2 className="title-xs mt-6 text-black group-hover:text-eik-50 transition-colors">
+                  <h2 className="text-l-bold mt-6 text-black transition-colors group-hover:text-eik-50 lg:title-xs">
                     {prosjekt.title}
                   </h2>
                   <p className="text-m mt-3 text-storm-70">
                     {prosjekt.ingress}
                   </p>
+                  {prosjekt.mentorer && prosjekt.mentorer.length > 0 && (
+                    <p className="tag-xs mt-4 text-storm-50">
+                      Mentorer: {prosjekt.mentorer.join(", ")}
+                    </p>
+                  )}
                 </Link>
               ))}
             </div>

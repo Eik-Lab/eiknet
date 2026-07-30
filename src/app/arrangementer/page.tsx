@@ -29,7 +29,7 @@ export default function ArrangementerPage() {
             <p className="tag-s-bold uppercase tracking-widest text-black/60">
               Arrangementer
             </p>
-            <h1 className="title-l mt-4 text-black">
+            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
               Kommende arrangementer
             </h1>
             <p className="text-xl mt-6 max-w-2xl text-storm-70">
@@ -64,7 +64,7 @@ export default function ArrangementerPage() {
                           </span>
                         )}
                       </div>
-                      <h2 className="title-xs mt-4 text-black group-hover:text-eik-50 transition-colors">
+                      <h2 className="text-l-bold mt-4 text-black transition-colors group-hover:text-eik-50 lg:title-xs">
                         {arr.title}
                       </h2>
                       <p className="text-m mt-3 text-storm-70">

@@ -1,15 +1,28 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { getAllArrangementer } from "@/lib/arrangementer";
+import { getAllProsjekter } from "@/lib/prosjekter";
 import MuxPlayer from "@mux/mux-player-react";
 import Link from "next/link";
 
 export default function Home() {
+  const prosjekter = getAllProsjekter().slice(0, 3);
+  const arrangementer = getAllArrangementer().slice(0, 3);
+
+  const tagColors: Record<string, string> = {
+    Miljø: "bg-eik-80",
+    Digital: "bg-hav-70",
+    "Deep tech": "bg-plomme-60",
+    Sensor: "bg-klementin-60",
+    Bærekraft: "bg-eik-70",
+    Edtech: "bg-solgul-60",
+  };
   return (
     <>
       <Header />
       <main className="flex-1 overflow-x-hidden">
         {/* ── Hero ───────────────────────────────────────────── */}
-        <section className="relative min-h-screen bg-krem">
+        <section className="relative bg-krem lg:min-h-screen">
           {/* Green organic blob */}
           <div
             className="pointer-events-none absolute"
@@ -52,7 +65,7 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-16 px-4 pb-32 pt-58">
+          <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-3 px-4 pb-8 pt-28 sm:gap-8 sm:pb-20 lg:gap-16 lg:pt-58">
             
             <div className="flex flex-col items-center text-center">
               <h1 className="title-xs text-black sm:title-s lg:title-xl">
@@ -61,7 +74,7 @@ export default function Home() {
               <p className="tag-l mt-4 text-black/80 lg:tag-xl">
                 Senter for studentinnovasjon
               </p>
-              <div className="mt-10 flex items-center gap-4">
+              <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-4">
                 <Link
                   href="/om"
                   className="tag-s rounded-[50px] border-2 border-black px-7 py-3 font-bold text-black transition-colors hover:bg-black hover:text-krem"
@@ -76,11 +89,11 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="w-full overflow-hidden rounded-[32px]">
+            <div className="w-full">
               <MuxPlayer
                 streamType="on-demand"
                 playbackId={process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID!}
-                className="aspect-video w-full [--controls:none]"
+                className="aspect-video w-full rounded-2xl sm:rounded-[32px] [--controls:none]"
                 autoPlay
                 muted
                 loop
@@ -108,44 +121,29 @@ export default function Home() {
           <div className="mx-auto max-w-6xl">
             <h2 className="title-xs mb-12 text-black lg:title-m">Prosjekter</h2>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  title: "AgroTech",
-                  desc: "Smarte sensorer og IoT-løsninger for bærekraftig landbruk.",
-                  tag: "Teknologi",
-                  bg: "bg-eik-80",
-                },
-                {
-                  title: "GreenBox",
-                  desc: "Gjenbrukbar emballasje som reduserer plastforsøpling.",
-                  tag: "Bærekraft",
-                  bg: "bg-eik-60",
-                },
-                {
-                  title: "FoodBridge",
-                  desc: "Kobler studenter med lokale matvareprodusenters overskudd.",
-                  tag: "Samfunn",
-                  bg: "bg-black",
-                },
-              ].map(({ title, desc, tag, bg }) => (
-                <div
-                  key={title}
-                  className={`flex min-h-[260px] flex-col justify-between rounded-3xl p-8 transition-transform hover:-translate-y-1 ${bg}`}
+              {prosjekter.map((p, i) => (
+                <Link
+                  key={p.slug}
+                  href={`/prosjekter/${p.slug}`}
+                  className={`group flex min-h-[260px] flex-col justify-between rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${tagColors[p.tag] || "bg-eik-80"}`}
+                  style={{ animationDelay: `${i * 100}ms` }}
                 >
                   <div>
                     <span className="inline-block rounded-full border border-white/30 px-3 py-1 tag-xs text-white/70">
-                      {tag}
+                      {p.tag}
                     </span>
-                    <h3 className="tag-l mt-4 font-bold text-white">{title}</h3>
-                    <p className="text-s mt-3 text-white/80">{desc}</p>
+                    <h3 className="tag-l mt-4 font-bold text-white">{p.title}</h3>
+                    <p className="text-s mt-3 text-white/80">{p.ingress}</p>
+                    {p.mentorer && p.mentorer.length > 0 && (
+                      <p className="tag-xs mt-3 text-white/50">
+                        Mentorer: {p.mentorer.join(", ")}
+                      </p>
+                    )}
                   </div>
-                  <Link
-                    href="/prosjekter"
-                    className="tag-s mt-6 flex items-center gap-2 font-semibold text-white/90 hover:text-white"
-                  >
+                  <span className="tag-s mt-6 flex items-center gap-2 font-semibold text-white/90 transition-all group-hover:gap-3">
                     Les mer →
-                  </Link>
-                </div>
+                  </span>
+                </Link>
               ))}
             </div>
           </div>
@@ -190,24 +188,20 @@ export default function Home() {
               Arrangementer
             </h2>
             <div className="flex flex-col gap-4">
-              {[
-                { date: "15. aug", title: "Kick-off høst 2025", loc: "Eik Lab, Ås" },
-                { date: "22. aug", title: "Idé-workshop", loc: "Eik Lab, Ås" },
-                { date: "5. sep", title: "Demo Day", loc: "NMBU campus" },
-              ].map(({ date, title, loc }) => (
+              {arrangementer.map((a) => (
                 <Link
-                  key={title}
-                  href="/arrangementer"
-                  className="group flex flex-col gap-4 rounded-3xl bg-white px-8 py-6 shadow-s transition-colors hover:bg-eik-70 sm:flex-row sm:items-center sm:gap-8"
+                  key={a.slug}
+                  href={`/arrangementer/${a.slug}`}
+                  className="group flex flex-col gap-4 rounded-3xl bg-white px-8 py-6 shadow-s transition-all duration-300 hover:-translate-y-0.5 hover:shadow-m hover:bg-eik-70 sm:flex-row sm:items-center sm:gap-8"
                 >
                   <span className="tag-l-bold w-24 shrink-0 text-eik-70 group-hover:text-eik-30">
-                    {date}
+                    {a.date}
                   </span>
                   <span className="tag-l-bold flex-1 text-black group-hover:text-white">
-                    {title}
+                    {a.title}
                   </span>
                   <span className="tag-s text-black/60 group-hover:text-white/60">
-                    {loc}
+                    Eik Lab, Ås
                   </span>
                 </Link>
               ))}

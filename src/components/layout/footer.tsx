@@ -4,7 +4,7 @@ import { BuildingMark } from "./building-mark";
 export function Footer() {
   return (
     <footer className="pb-6">
-      <div className="rounded-[25px] bg-eik-60 px-8 py-14 lg:px-10 lg:py-16">
+      <div className="rounded-[25px] bg-eik-60 px-6 py-14 lg:px-10 lg:py-16">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
         <div className="flex flex-col gap-1">
           <span className="tag-l-bold text-white">EIK LAB</span>

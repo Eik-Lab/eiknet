@@ -10,6 +10,7 @@ export interface ProsjektFrontmatter {
   status: ProsjektStatus;
   slug: string;
   ingress: string;
+  mentorer?: string[];
 }
 
 export interface Prosjekt extends ProsjektFrontmatter {

@@ -39,7 +39,7 @@ export default async function ProsjektSide({ params }: Props) {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20">
           <div className="mx-auto max-w-3xl">
             <Link
@@ -62,6 +62,11 @@ export default async function ProsjektSide({ params }: Props) {
               {prosjekt.title}
             </h1>
             <p className="text-xl mt-4 text-storm-70">{prosjekt.ingress}</p>
+            {prosjekt.mentorer && prosjekt.mentorer.length > 0 && (
+              <p className="tag-s mt-6 text-storm-60">
+                Mentorer: {prosjekt.mentorer.join(", ")}
+              </p>
+            )}
           </div>
         </section>
 
