@@ -8,6 +8,7 @@ export interface AlumniFrontmatter {
   slug: string;
   ingress: string;
   spinOff: string;
+  url?: string;
 }
 
 export interface Alumni extends AlumniFrontmatter {

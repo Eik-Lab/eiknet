@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { Reveal } from "@/components/animations/reveal";
 import { getAllArrangementer } from "@/lib/arrangementer";
 import Link from "next/link";
 
@@ -26,27 +27,29 @@ export default function ArrangementerPage() {
       <main className="flex-1">
         <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="tag-s-bold uppercase tracking-widest text-black/60">
-              Arrangementer
-            </p>
-            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
-              Kommende arrangementer
-            </h1>
-            <p className="text-xl mt-6 max-w-2xl text-storm-70">
-              Workshops, hackathons, gjesteforelesninger og åpen lab — det
-              skjer noe på Eik Lab nesten hver uke.
-            </p>
+            <Reveal>
+              <p className="tag-s-bold uppercase tracking-widest text-black/60">
+                Arrangementer
+              </p>
+              <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
+                Kommende arrangementer
+              </h1>
+              <p className="text-xl mt-6 max-w-2xl text-storm-70">
+                Workshops, hackathons, gjesteforelesninger og åpen lab — det
+                skjer noe på Eik Lab nesten hver uke.
+              </p>
+            </Reveal>
           </div>
         </section>
 
         <section className="bg-krem px-6 py-24 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <div className="grid gap-6">
+            <Reveal stagger={0.08} className="grid gap-6">
               {arrangementer.map((arr, index) => (
                 <Link
                   key={arr.slug}
                   href={`/arrangementer/${arr.slug}`}
-                  className={`group rounded-3xl bg-white p-8 shadow-s transition-all hover:-translate-y-0.5 hover:shadow-m ${
+                  className={`group bg-white p-8 shadow-s transition-all hover:-translate-y-0.5 hover:shadow-m ${
                     index === 0 ? "ring-2 ring-eik-50" : ""
                   }`}
                 >
@@ -78,7 +81,7 @@ export default function ArrangementerPage() {
                   </div>
                 </Link>
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
       </main>

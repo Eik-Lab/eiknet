@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { Reveal } from "@/components/animations/reveal";
 import { getAllProsjekter } from "@/lib/prosjekter";
 import Link from "next/link";
 
@@ -25,26 +26,31 @@ export default function ProsjekterPage() {
       <main className="flex-1">
         <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="tag-s-bold uppercase tracking-widest text-black/60">
-              Prosjekter
-            </p>
-            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
-              Studentdrevne innovasjonsprosjekter
-            </h1>
-            <p className="text-xl mt-6 max-w-2xl text-storm-70">
-              Utforsk hva studenter ved Eik Lab jobber med akkurat nå.
-            </p>
+            <Reveal>
+              <p className="tag-s-bold uppercase tracking-widest text-black/60">
+                Prosjekter
+              </p>
+              <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
+                Studentdrevne innovasjonsprosjekter
+              </h1>
+              <p className="text-xl mt-6 max-w-2xl text-storm-70">
+                Utforsk hva studenter ved Eik Lab jobber med akkurat nå.
+              </p>
+            </Reveal>
           </div>
         </section>
 
         <section className="bg-krem px-6 py-24 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Reveal
+              stagger={0.08}
+              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            >
               {prosjekter.map((prosjekt) => (
                 <Link
                   key={prosjekt.slug}
                   href={`/prosjekter/${prosjekt.slug}`}
-                  className="group rounded-3xl bg-white p-8 shadow-s transition-all hover:-translate-y-1 hover:shadow-m"
+                  className="group bg-white p-8 shadow-s transition-all hover:-translate-y-1 hover:shadow-m"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <span className="tag-s-bold rounded-full bg-eik-5 px-4 py-1.5 text-eik-70">
@@ -69,7 +75,7 @@ export default function ProsjekterPage() {
                   )}
                 </Link>
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
       </main>

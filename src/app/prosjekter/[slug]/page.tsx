@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { getAllSlugs, getProsjekt } from "@/lib/prosjekter";
+import { Reveal } from "@/components/animations/reveal";
+import { getAllProsjekter, getProsjekt } from "@/lib/prosjekter";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -11,7 +12,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  return getAllProsjekter().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -32,9 +33,14 @@ const statusStyles: Record<string, string> = {
 
 export default async function ProsjektSide({ params }: Props) {
   const { slug } = await params;
-  const prosjekt = getProsjekt(slug);
+  const prosjekter = getAllProsjekter();
+  const index = prosjekter.findIndex((p) => p.slug === slug);
+  const prosjekt = prosjekter[index];
 
   if (!prosjekt) notFound();
+
+  const forrige = prosjekter[(index - 1 + prosjekter.length) % prosjekter.length];
+  const neste = prosjekter[(index + 1) % prosjekter.length];
 
   return (
     <>
@@ -71,8 +77,31 @@ export default async function ProsjektSide({ params }: Props) {
         </section>
 
         <section className="bg-krem px-6 py-24">
-          <div className="prose prose-lg mx-auto max-w-3xl prose-headings:font-sans prose-headings:text-black prose-headings:mt-10 prose-headings:mb-4 prose-p:text-storm-70 prose-p:leading-relaxed prose-ul:text-storm-70 prose-li:leading-relaxed">
+          <Reveal className="prose prose-lg mx-auto max-w-3xl prose-headings:font-sans prose-headings:text-black prose-headings:mt-10 prose-headings:mb-4 prose-p:text-storm-70 prose-p:leading-relaxed prose-ul:text-storm-70 prose-li:leading-relaxed">
             <ReactMarkdown>{prosjekt.content}</ReactMarkdown>
+          </Reveal>
+        </section>
+
+        <section className="bg-krem px-6 pb-24">
+          <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
+            <Link
+              href={`/prosjekter/${forrige.slug}`}
+              className="group bg-white p-6 shadow-s transition-all hover:-translate-y-0.5 hover:shadow-m"
+            >
+              <span className="tag-s text-storm-50">Forrige prosjekt</span>
+              <span className="tag-l-bold mt-2 block text-black transition-colors group-hover:text-eik-50">
+                ← {forrige.title}
+              </span>
+            </Link>
+            <Link
+              href={`/prosjekter/${neste.slug}`}
+              className="group bg-white p-6 text-right shadow-s transition-all hover:-translate-y-0.5 hover:shadow-m"
+            >
+              <span className="tag-s text-storm-50">Neste prosjekt</span>
+              <span className="tag-l-bold mt-2 block text-black transition-colors group-hover:text-eik-50">
+                {neste.title} →
+              </span>
+            </Link>
           </div>
         </section>
       </main>

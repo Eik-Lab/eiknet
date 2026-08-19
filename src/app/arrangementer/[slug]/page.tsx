@@ -82,7 +82,7 @@ export default async function ArrangementSide({ params }: Props) {
                   href={arr.pameldingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex rounded-full bg-eik-50 px-8 py-3.5 tag-s-bold text-white shadow-m transition-transform hover:scale-105"
+                  className="inline-flex bg-eik-50 px-8 py-3.5 tag-s-bold text-white shadow-m transition-transform hover:scale-105"
                 >
                   Meld deg på
                 </a>
@@ -92,7 +92,7 @@ export default async function ArrangementSide({ params }: Props) {
                   href={arr.facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex rounded-full border-2 border-black px-8 py-3.5 tag-s-bold text-black transition-colors hover:bg-black hover:text-krem"
+                  className="inline-flex border-2 border-black px-8 py-3.5 tag-s-bold text-black transition-colors hover:bg-black hover:text-krem"
                 >
                   Se på Facebook
                 </a>
