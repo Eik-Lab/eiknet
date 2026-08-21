@@ -126,11 +126,6 @@
   /* ---- Skygger ---- */
   --shadow-xs: 0px 2px 8px -2px rgba(26, 46, 43, 0.09);
   --shadow-s: 0px 4px 12px -2px rgba(26, 46, 43, 0.12);
-  --shadow-m: 0px 8px 24px -4px rgba(26, 46, 43, 0.12);
-  --shadow-l: 0px 14px 36px -7px rgba(26, 46, 43, 0.17);
-  --shadow-xl: 0px 18px 48px -8px rgba(26, 46, 43, 0.18);
-  --shadow-2xl: 0px 24px 56px -8px rgba(26, 46, 43, 0.2);
-  --shadow-3xl: 0px 28px 68px -12px rgba(26, 46, 43, 0.22);
 }
 
 /* =========================================================
@@ -138,12 +133,13 @@
    ========================================================= */
 body {
   background-color: var(--color-krem);
-  background-image:
-    linear-gradient(to right, rgba(26, 46, 43, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(26, 46, 43, 0.045) 1px, transparent 1px);
-  background-size: 40px 40px;
   color: var(--color-black);
   font-family: var(--font-serif);
+}
+
+::selection {
+  background-color: var(--color-eik-20);
+  color: var(--color-black);
 }
 
 /* =========================================================
@@ -156,116 +152,72 @@ body {
 }
 
 /* =========================================================
-   Marquee (partner-logo-carousel)
+   Tekststiler fra Eik — som utilities.
+   Definert med @utility slik at responsive varianter
+   (sm:title-s, lg:title-xl osv.) faktisk kompileres.
    ========================================================= */
-.marquee-track {
-  animation: marquee-scroll var(--marquee-speed, 40s) linear infinite;
-}
 
-.marquee-track:hover {
-  animation-play-state: paused;
-}
+@utility title-xxl       { font-family: var(--font-sans); font-weight: 700; font-size: 144px; line-height: 154px; letter-spacing: -0.03em; }
+@utility title-xl        { font-family: var(--font-sans); font-weight: 700; font-size: 115px; line-height: 125px; letter-spacing: -0.02em; }
+@utility title-xl-black  { font-family: var(--font-sans); font-weight: 900; font-size: 115px; line-height: 125px; letter-spacing: -0.02em; }
+@utility title-l         { font-family: var(--font-sans); font-weight: 700; font-size: 91px;  line-height: 98px;  letter-spacing: -0.02em; }
+@utility title-l-black   { font-family: var(--font-sans); font-weight: 900; font-size: 91px;  line-height: 98px;  letter-spacing: -0.02em; }
+@utility title-m         { font-family: var(--font-sans); font-weight: 700; font-size: 77px;  line-height: 86px;  letter-spacing: -0.01em; }
+@utility title-m-black   { font-family: var(--font-sans); font-weight: 900; font-size: 77px;  line-height: 86px;  letter-spacing: -0.01em; }
+@utility title-s         { font-family: var(--font-sans); font-weight: 700; font-size: 58px;  line-height: 67px;  letter-spacing: -0.01em; }
+@utility title-xs        { font-family: var(--font-sans); font-weight: 700; font-size: 43px;  line-height: 53px;  letter-spacing: 0; }
 
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
+@utility text-xxl             { font-family: var(--font-serif); font-weight: 400; font-size: 43px; line-height: 55px; }
+@utility text-xxl-bold        { font-family: var(--font-serif); font-weight: 700; font-size: 43px; line-height: 55px; }
+@utility text-xxl-italic      { font-family: var(--font-serif); font-weight: 400; font-size: 43px; line-height: 55px; font-style: italic; }
+@utility text-xxl-bold-italic { font-family: var(--font-serif); font-weight: 700; font-size: 43px; line-height: 55px; font-style: italic; }
+@utility text-xl              { font-family: var(--font-serif); font-weight: 400; font-size: 29px; line-height: 41px; }
+@utility text-xl-bold         { font-family: var(--font-serif); font-weight: 700; font-size: 29px; line-height: 41px; }
+@utility text-xl-italic       { font-family: var(--font-serif); font-weight: 400; font-size: 29px; line-height: 41px; font-style: italic; }
+@utility text-xl-bold-italic  { font-family: var(--font-serif); font-weight: 700; font-size: 29px; line-height: 41px; font-style: italic; }
+@utility text-l               { font-family: var(--font-serif); font-weight: 400; font-size: 24px; line-height: 36px; }
+@utility text-l-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 24px; line-height: 36px; }
+@utility text-l-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 24px; line-height: 36px; font-style: italic; }
+@utility text-l-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 24px; line-height: 36px; font-style: italic; }
+@utility text-m               { font-family: var(--font-serif); font-weight: 400; font-size: 19px; line-height: 29px; }
+@utility text-m-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 19px; line-height: 29px; }
+@utility text-m-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 19px; line-height: 29px; font-style: italic; }
+@utility text-m-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 19px; line-height: 29px; font-style: italic; }
+@utility text-s               { font-family: var(--font-serif); font-weight: 400; font-size: 17px; line-height: 24px; }
+@utility text-s-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 17px; line-height: 24px; }
+@utility text-s-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 17px; line-height: 24px; font-style: italic; }
+@utility text-s-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 17px; line-height: 24px; font-style: italic; }
+@utility text-xs              { font-family: var(--font-serif); font-weight: 400; font-size: 14px; line-height: 22px; }
+@utility text-xs-bold         { font-family: var(--font-serif); font-weight: 700; font-size: 14px; line-height: 22px; }
+@utility text-xs-italic       { font-family: var(--font-serif); font-weight: 400; font-size: 14px; line-height: 22px; font-style: italic; }
+@utility text-xs-bold-italic  { font-family: var(--font-serif); font-weight: 700; font-size: 14px; line-height: 22px; font-style: italic; }
+
+@utility tag-xl       { font-family: var(--font-sans); font-weight: 400; font-size: 31px; line-height: 38px; letter-spacing: -0.01em; }
+@utility tag-xl-bold  { font-family: var(--font-sans); font-weight: 700; font-size: 31px; line-height: 38px; letter-spacing: -0.01em; }
+@utility tag-l        { font-family: var(--font-sans); font-weight: 400; font-size: 24px; line-height: 34px; letter-spacing: -0.01em; }
+@utility tag-l-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 24px; line-height: 34px; letter-spacing: -0.01em; }
+@utility tag-m        { font-family: var(--font-sans); font-weight: 400; font-size: 19px; line-height: 25px; letter-spacing: -0.01em; }
+@utility tag-m-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 19px; line-height: 25px; letter-spacing: -0.01em; }
+@utility tag-s        { font-family: var(--font-sans); font-weight: 400; font-size: 16px; line-height: 23px; letter-spacing: -0.01em; }
+@utility tag-s-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 16px; line-height: 23px; letter-spacing: -0.01em; }
+@utility tag-xs       { font-family: var(--font-sans); font-weight: 400; font-size: 12px; line-height: 16px; letter-spacing: -0.01em; }
+@utility tag-xs-bold  { font-family: var(--font-sans); font-weight: 700; font-size: 12px; line-height: 16px; letter-spacing: -0.01em; }
 
 /* =========================================================
-   Route-transisjoner (View Transitions API)
+   Editorial-hjelpere
    ========================================================= */
-::view-transition-old(.page-exit) {
-  animation: 180ms ease-in both page-out;
+
+/* Liten uppercase-etikett i Archivo — brukes sparsomt */
+@utility kicker {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-::view-transition-new(.page-enter) {
-  animation: 260ms ease-out 140ms both page-in;
-}
-
-@keyframes page-in {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes page-out {
-  from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 0; transform: translateY(-10px); }
-}
-
-::view-transition-group(site-header) {
-  animation: none;
-  z-index: 100;
-}
-
-::view-transition-old(site-header) {
-  display: none;
-}
-
-::view-transition-new(site-header) {
-  animation: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(*),
-  ::view-transition-new(*),
-  ::view-transition-group(*) {
-    animation-duration: 0s !important;
-    animation-delay: 0s !important;
-  }
-
-  .marquee-track {
-    animation: none;
-  }
-}
-
-/* =========================================================
-   Tekststiler fra Eik — som utilities (@layer components)
-   Bruk via className, f.eks. <h1 className="title-xl">
-   ========================================================= */
-@layer components {
-  .title-xxl       { font-family: var(--font-sans); font-weight: 700; font-size: 144px; line-height: 154px; letter-spacing: -0.03em; }
-  .title-xl        { font-family: var(--font-sans); font-weight: 700; font-size: 115px; line-height: 125px; letter-spacing: -0.02em; }
-  .title-xl-black  { font-family: var(--font-sans); font-weight: 900; font-size: 115px; line-height: 125px; letter-spacing: -0.02em; }
-  .title-l         { font-family: var(--font-sans); font-weight: 700; font-size: 91px;  line-height: 98px;  letter-spacing: -0.02em; }
-  .title-l-black   { font-family: var(--font-sans); font-weight: 900; font-size: 91px;  line-height: 98px;  letter-spacing: -0.02em; }
-  .title-m         { font-family: var(--font-sans); font-weight: 700; font-size: 77px;  line-height: 86px;  letter-spacing: -0.01em; }
-  .title-m-black   { font-family: var(--font-sans); font-weight: 900; font-size: 77px;  line-height: 86px;  letter-spacing: -0.01em; }
-  .title-s         { font-family: var(--font-sans); font-weight: 700; font-size: 58px;  line-height: 67px;  letter-spacing: -0.01em; }
-  .title-xs        { font-family: var(--font-sans); font-weight: 700; font-size: 43px;  line-height: 53px;  letter-spacing: 0; }
-
-  .text-xxl             { font-family: var(--font-serif); font-weight: 400; font-size: 43px; line-height: 55px; }
-  .text-xxl-bold        { font-family: var(--font-serif); font-weight: 700; font-size: 43px; line-height: 55px; }
-  .text-xxl-italic      { font-family: var(--font-serif); font-weight: 400; font-size: 43px; line-height: 55px; font-style: italic; }
-  .text-xxl-bold-italic { font-family: var(--font-serif); font-weight: 700; font-size: 43px; line-height: 55px; font-style: italic; }
-  .text-xl              { font-family: var(--font-serif); font-weight: 400; font-size: 29px; line-height: 41px; }
-  .text-xl-bold         { font-family: var(--font-serif); font-weight: 700; font-size: 29px; line-height: 41px; }
-  .text-xl-italic       { font-family: var(--font-serif); font-weight: 400; font-size: 29px; line-height: 41px; font-style: italic; }
-  .text-xl-bold-italic  { font-family: var(--font-serif); font-weight: 700; font-size: 29px; line-height: 41px; font-style: italic; }
-  .text-l               { font-family: var(--font-serif); font-weight: 400; font-size: 24px; line-height: 36px; }
-  .text-l-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 24px; line-height: 36px; }
-  .text-l-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 24px; line-height: 36px; font-style: italic; }
-  .text-l-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 24px; line-height: 36px; font-style: italic; }
-  .text-m               { font-family: var(--font-serif); font-weight: 400; font-size: 19px; line-height: 29px; }
-  .text-m-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 19px; line-height: 29px; }
-  .text-m-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 19px; line-height: 29px; font-style: italic; }
-  .text-m-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 19px; line-height: 29px; font-style: italic; }
-  .text-s               { font-family: var(--font-serif); font-weight: 400; font-size: 17px; line-height: 24px; }
-  .text-s-bold          { font-family: var(--font-serif); font-weight: 700; font-size: 17px; line-height: 24px; }
-  .text-s-italic        { font-family: var(--font-serif); font-weight: 400; font-size: 17px; line-height: 24px; font-style: italic; }
-  .text-s-bold-italic   { font-family: var(--font-serif); font-weight: 700; font-size: 17px; line-height: 24px; font-style: italic; }
-  .text-xs              { font-family: var(--font-serif); font-weight: 400; font-size: 14px; line-height: 22px; }
-  .text-xs-bold         { font-family: var(--font-serif); font-weight: 700; font-size: 14px; line-height: 22px; }
-  .text-xs-italic       { font-family: var(--font-serif); font-weight: 400; font-size: 14px; line-height: 22px; font-style: italic; }
-  .text-xs-bold-italic  { font-family: var(--font-serif); font-weight: 700; font-size: 14px; line-height: 22px; font-style: italic; }
-
-  .tag-xl       { font-family: var(--font-sans); font-weight: 400; font-size: 31px; line-height: 38px; letter-spacing: -0.01em; }
-  .tag-xl-bold  { font-family: var(--font-sans); font-weight: 700; font-size: 31px; line-height: 38px; letter-spacing: -0.01em; }
-  .tag-l        { font-family: var(--font-sans); font-weight: 400; font-size: 24px; line-height: 34px; letter-spacing: -0.01em; }
-  .tag-l-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 24px; line-height: 34px; letter-spacing: -0.01em; }
-  .tag-m        { font-family: var(--font-sans); font-weight: 400; font-size: 19px; line-height: 25px; letter-spacing: -0.01em; }
-  .tag-m-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 19px; line-height: 25px; letter-spacing: -0.01em; }
-  .tag-s        { font-family: var(--font-sans); font-weight: 400; font-size: 16px; line-height: 23px; letter-spacing: -0.01em; }
-  .tag-s-bold   { font-family: var(--font-sans); font-weight: 700; font-size: 16px; line-height: 23px; letter-spacing: -0.01em; }
-  .tag-xs       { font-family: var(--font-sans); font-weight: 400; font-size: 12px; line-height: 16px; letter-spacing: -0.01em; }
-  .tag-xs-bold  { font-family: var(--font-sans); font-weight: 700; font-size: 12px; line-height: 16px; letter-spacing: -0.01em; }
+/* Duotone-behandling av foto: sort/hvitt med grønn tone */
+@utility foto-duotone {
+  filter: grayscale(1) contrast(1.05) brightness(0.99) sepia(0.14);
 }

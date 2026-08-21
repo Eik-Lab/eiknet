@@ -2,30 +2,30 @@ import Link from "next/link";
 
 export function Cta() {
   return (
-    <section className="px-6 pb-6 lg:px-16">
-      <div className="mx-auto max-w-6xl overflow-hidden bg-black px-8 py-20 text-center lg:py-28">
-        <p className="tag-s-bold uppercase tracking-widest text-eik-30">
-          Har du en idé?
-        </p>
-        <h2 className="title-xs mx-auto mt-4 max-w-2xl text-white lg:title-l">
-          Kom innom, bygg det — vi hjelper deg i gang.
-        </h2>
-        <p className="text-l mx-auto mt-6 max-w-xl text-white/70">
-          Fra første skisse til fungerende prototype. Eik Lab gir deg verktøy,
-          mentorer og et engasjert miljø.
-        </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+    <section className="bg-black px-6 py-20 lg:px-16 lg:py-28">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-2xl">
+          <p className="kicker text-eik-30">Har du en idé?</p>
+          <h2 className="title-xs mt-4 text-white lg:title-l">
+            Kom innom, bygg det.
+          </h2>
+          <p className="text-l mt-5 text-white/70">
+            Fra første skisse til fungerende prototype. Du finner oss i
+            TF2-204 på campus Ås — eller send noen linjer, så tar vi en kaffe.
+          </p>
+        </div>
+        <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
           <Link
             href="/kontakt"
-            className="tag-s bg-eik-50 px-8 py-3.5 font-bold text-white transition-colors hover:bg-eik-60"
+            className="tag-s-bold bg-eik-50 px-8 py-3.5 text-white transition-colors hover:bg-eik-40"
           >
             Ta kontakt
           </Link>
           <Link
             href="/arrangementer"
-            className="tag-s border-2 border-white/40 px-8 py-3.5 font-bold text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+            className="tag-s-bold text-white underline decoration-white/40 decoration-2 underline-offset-4 transition-colors hover:decoration-white"
           >
-            Se arrangementer
+            Se hva som skjer
           </Link>
         </div>
       </div>

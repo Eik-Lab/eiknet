@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { Reveal } from "@/components/animations/reveal";
 import { mentorer } from "@/lib/mentorer";
 
 export const metadata: Metadata = {
@@ -11,51 +10,69 @@ export const metadata: Metadata = {
 };
 
 export default function MentorerPage() {
-  const mentors = mentorer;
   return (
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20 lg:px-16">
+        <section className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="tag-s-bold uppercase tracking-widest text-black/60">
-              Mentorer
-            </p>
-            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
-              Veiledere fra akademia og næringsliv
+            <p className="kicker text-black/50">Mentorene</p>
+            <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
+              De som har vært gjennom det før
             </h1>
-            <p className="text-xl mt-6 max-w-2xl text-storm-70">
-              Våre mentorer gir deg faglig spissing, praktisk erfaring og
-              nettverket du trenger for å lykkes med prosjektet ditt.
+            <p className="text-xl mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
+              Ni studenter innen robotikk, indøk og datavitenskap stiller som
+              mentorer. De har ikke alle svarene — men de vet som regel hvem
+              som har dem.
             </p>
           </div>
         </section>
 
-        <section className="bg-krem px-6 py-24 lg:px-16">
+        <section className="px-6 py-14 lg:px-16 lg:py-20">
           <div className="mx-auto max-w-6xl">
-            <Reveal
-              stagger={0.08}
-              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-            >
-              {mentors.map((mentor) => (
-                <article
+            <ul>
+              {mentorer.map((mentor) => (
+                <li
                   key={mentor.name}
-                  className="bg-white p-8 shadow-s"
+                  className="border-b border-black/15 first:border-t"
                 >
-                  <div className="mb-5 h-16 w-16 rounded-full bg-eik-5" />
                   <a
                     href={mentor.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="tag-s-bold text-eik-60 underline-offset-2 hover:underline"
+                    className="group grid gap-x-8 gap-y-1 px-2 py-6 transition-colors hover:bg-white sm:grid-cols-[280px_1fr_auto] sm:items-baseline"
                   >
-                    {mentor.field}
+                    <span className="text-l-bold text-black transition-colors group-hover:text-eik-60">
+                      {mentor.name}
+                    </span>
+                    <span>
+                      <span className="kicker block text-black/40">
+                        {mentor.field}
+                      </span>
+                      <span className="text-s mt-1 block max-w-2xl text-storm-70">
+                        {mentor.bio}
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="hidden text-l text-storm-40 transition-all group-hover:translate-x-1 group-hover:text-eik-60 sm:block"
+                    >
+                      &rarr;
+                    </span>
                   </a>
-                  <h2 className="text-l-bold mt-2 text-black lg:title-xs">{mentor.name}</h2>
-                  <p className="text-m mt-3 text-storm-70">{mentor.bio}</p>
-                </article>
+                </li>
               ))}
-            </Reveal>
+            </ul>
+            <p className="text-s-italic mt-8 max-w-2xl text-storm-50">
+              Vil du bli mentor? Send noen linjer til{" "}
+              <a
+                href="mailto:eiklab@nmbu.no"
+                className="underline decoration-eik-50 decoration-2 underline-offset-4 transition-colors hover:text-eik-60"
+              >
+                eiklab@nmbu.no
+              </a>
+              .
+            </p>
           </div>
         </section>
       </main>
