@@ -10,13 +10,6 @@ export const metadata: Metadata = {
     "Kommende arrangementer ved Eik Lab — workshops, hackathons, gjesteforelesninger og åpen lab.",
 };
 
-const typeColors: Record<string, string> = {
-  Workshop: "bg-eik-5 text-eik-70",
-  Forelesning: "bg-hav-5 text-hav-70",
-  Hackathon: "bg-klementin-5 text-klementin-60",
-  Presentasjon: "bg-plomme-5 text-plomme-60",
-};
-
 export default function ArrangementerPage() {
   const arrangementer = getAllArrangementer();
 
@@ -24,61 +17,59 @@ export default function ArrangementerPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-gradient-to-b from-eik-5 to-krem px-6 pt-36 pb-20 lg:px-16">
+        <section className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="tag-s-bold uppercase tracking-widest text-black/60">
-              Arrangementer
-            </p>
-            <h1 className="title-xs mt-4 text-black sm:title-s lg:title-l">
-              Kommende arrangementer
+            <p className="kicker text-black/50">Arrangementer</p>
+            <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
+              Framover
             </h1>
-            <p className="text-xl mt-6 max-w-2xl text-storm-70">
-              Workshops, hackathons, gjesteforelesninger og åpen lab — det
-              skjer noe på Eik Lab nesten hver uke.
+            <p className="text-xl mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
+              Workshops, hackathons og åpen lab — som regel noe å finne på
+              hver uke. Meld deg på, eller bare dukk opp.
             </p>
           </div>
         </section>
 
-        <section className="bg-krem px-6 py-24 lg:px-16">
+        <section className="px-6 py-14 lg:px-16 lg:py-20">
           <div className="mx-auto max-w-6xl">
-            <div className="grid gap-6">
+            <ul>
               {arrangementer.map((arr, index) => (
-                <Link
-                  key={arr.slug}
-                  href={`/arrangementer/${arr.slug}`}
-                  className={`group rounded-3xl bg-white p-8 shadow-s transition-all hover:-translate-y-0.5 hover:shadow-m ${
-                    index === 0 ? "ring-2 ring-eik-50" : ""
-                  }`}
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3">
+                <li key={arr.slug} className="border-b border-black/15 first:border-t">
+                  <Link
+                    href={`/arrangementer/${arr.slug}`}
+                    className="group grid gap-x-8 gap-y-1 px-2 py-7 transition-colors hover:bg-white sm:grid-cols-[150px_1fr_auto] sm:items-baseline"
+                  >
+                    <span className="tag-m-bold flex items-center gap-2 text-black">
+                      {index === 0 && (
                         <span
-                          className={`tag-s-bold rounded-full px-4 py-1.5 ${typeColors[arr.type] || "bg-eik-5 text-eik-70"}`}
-                        >
-                          {arr.type}
-                        </span>
-                        {index === 0 && (
-                          <span className="tag-xs-bold rounded-full bg-eik-50 px-3 py-1 text-white">
-                            Neste
-                          </span>
-                        )}
-                      </div>
-                      <h2 className="text-l-bold mt-4 text-black transition-colors group-hover:text-eik-50 lg:title-xs">
+                          aria-hidden="true"
+                          className="inline-block h-2 w-2 rounded-full bg-eik-50"
+                          title="Neste arrangement"
+                        />
+                      )}
+                      {arr.date}
+                    </span>
+                    <span>
+                      <span className="text-l-bold block text-black transition-colors group-hover:text-eik-60">
                         {arr.title}
-                      </h2>
-                      <p className="text-m mt-3 text-storm-70">
+                      </span>
+                      <span className="text-s mt-1 block max-w-2xl text-storm-70">
                         {arr.ingress}
-                      </p>
-                    </div>
-                    <div className="shrink-0 text-right">
-                      <p className="tag-m-bold text-eik-70">{arr.date}</p>
-                      <p className="tag-s text-storm-60">{arr.time}</p>
-                    </div>
-                  </div>
-                </Link>
+                      </span>
+                      <span className="kicker mt-2 block text-black/40">
+                        {arr.type} &middot; {arr.time}
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="hidden text-l text-storm-40 transition-all group-hover:translate-x-1 group-hover:text-eik-60 sm:block"
+                    >
+                      &rarr;
+                    </span>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
       </main>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -9,6 +10,7 @@ const links = [
   { href: "/prosjekter", label: "Prosjekter" },
   { href: "/arrangementer", label: "Arrangementer" },
   { href: "/alumni", label: "Alumni" },
+  { href: "/mentorer", label: "Mentorer" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
@@ -18,9 +20,16 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="flex w-full max-w-6xl items-center justify-between rounded-[50px] bg-white px-8 py-3 shadow-s">
+      <nav className="flex w-full items-center justify-between px-6 py-4 md:px-12 lg:px-16">
         <Link href="/">
-          <img src="/spiregronn.svg" alt="Eik Lab" className="h-[36px] w-auto" />
+          <Image
+            src="/spiregronn.svg"
+            alt="Eik Lab"
+            width={27}
+            height={36}
+            className="h-[36px] w-auto"
+            priority
+          />
         </Link>
         <div className="hidden items-center gap-6 md:flex">
           {links.map((link) => {
@@ -63,7 +72,7 @@ export function Navbar() {
         </button>
       </nav>
       {mobileOpen && (
-        <div className="absolute left-4 right-4 top-full mt-2 flex flex-col gap-4 rounded-3xl bg-white px-8 py-6 shadow-lg">
+        <div className="absolute left-0 right-0 top-full flex flex-col gap-4 border-b border-black/5 bg-white/90 px-8 py-6 shadow-lg backdrop-blur-md">
           {links.map((link) => (
             <Link
               key={link.href}

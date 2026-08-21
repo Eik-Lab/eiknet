@@ -1,99 +1,231 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { Hero } from "@/components/home/hero";
+import { Muligheter } from "@/components/home/muligheter";
+import { Cta } from "@/components/home/cta";
+import { Foto } from "@/components/media/foto";
 import { getAllArrangementer } from "@/lib/arrangementer";
 import { getAllProsjekter } from "@/lib/prosjekter";
 import MuxPlayer from "@mux/mux-player-react";
 import Link from "next/link";
 
 export default function Home() {
-  const prosjekter = getAllProsjekter().slice(0, 3);
+  const prosjekter = getAllProsjekter();
+  const [fremhevet, ...resten] = prosjekter;
   const arrangementer = getAllArrangementer().slice(0, 3);
 
-  const tagColors: Record<string, string> = {
-    Miljø: "bg-eik-80",
-    Digital: "bg-hav-70",
-    "Deep tech": "bg-plomme-60",
-    Sensor: "bg-klementin-60",
-    Bærekraft: "bg-eik-70",
-    Edtech: "bg-solgul-60",
-  };
   return (
     <>
       <Header />
-      <main className="flex-1 overflow-x-hidden">
-        {/* ── Hero ───────────────────────────────────────────── */}
-        <section className="relative bg-krem lg:min-h-screen">
-          {/* Green organic blob */}
-          <div
-            className="pointer-events-none absolute"
-            style={{ top: -250, left: -400, width: 1200, height: 900, zIndex: 0 }}
-            aria-hidden="true"
-          >
-            <svg width="100%" height="100%" viewBox="0 0 1200 900" preserveAspectRatio="none" overflow="visible">
-              <defs>
-                <filter id="blob-green" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="80" result="blur" />
-                </filter>
-              </defs>
-              <path
-                d="M 550,180 C 750,120 950,150 1020,300 C 1090,450 1050,580 900,670 C 750,760 500,750 300,680 C 100,610 50,450 100,300 C 150,150 300,90 400,130 C 470,160 500,200 550,180 Z"
-                fill="#55BCAB"
-                opacity="0.45"
-                filter="url(#blob-green)"
-              />
-            </svg>
-          </div>
+      <main className="flex-1">
+        <Hero />
 
-          {/* Blue organic blob */}
-          <div
-            className="pointer-events-none absolute"
-            style={{ bottom: -200, right: -200, width: 800, height: 800, zIndex: 0 }}
-            aria-hidden="true"
-          >
-            <svg width="100%" height="100%" viewBox="0 0 800 800" preserveAspectRatio="none" overflow="visible">
-              <defs>
-                <filter id="blob-blue" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="60" result="blur" />
-                </filter>
-              </defs>
-              <path
-                d="M 400,120 C 540,80 660,160 710,280 C 760,400 660,540 540,610 C 420,680 220,660 140,540 C 60,420 80,280 140,190 C 200,100 280,80 340,100 C 360,110 380,120 400,120 Z"
-                fill="#6DAAC3"
-                opacity="0.45"
-                filter="url(#blob-blue)"
-              />
-            </svg>
-          </div>
-
-          <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-3 px-4 pb-8 pt-28 sm:gap-8 sm:pb-20 lg:gap-16 lg:pt-58">
-            
-            <div className="flex flex-col items-center text-center">
-              <h1 className="title-xs text-black sm:title-s lg:title-xl">
-                EIK LAB
-              </h1>
-              <p className="tag-l mt-4 text-black/80 lg:tag-xl">
-                Senter for studentinnovasjon
+        {/* ── Om ─────────────────────────────────────────────── */}
+        <section className="px-6 py-20 lg:px-16 lg:py-28">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-3">
+              <p className="kicker text-black/50 lg:sticky lg:top-32">
+                Om Eik Lab
               </p>
-              <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-                <Link
-                  href="/om"
-                  className="tag-s rounded-[50px] border-2 border-black px-7 py-3 font-bold text-black transition-colors hover:bg-black hover:text-krem"
-                >
-                  Bli med
-                </Link>
-                <Link
-                  href="/prosjekter"
-                  className="tag-s rounded-[50px] border-2 border-black px-7 py-3 font-bold text-black transition-colors hover:bg-black hover:text-krem"
-                >
-                  Prosjekter
-                </Link>
-              </div>
             </div>
-            <div className="w-full">
+            <div className="lg:col-span-9">
+              <p className="text-xl max-w-3xl text-black lg:text-xxl">
+                Eik Lab er studentenes verksted ved NMBU — et lab-miljø i
+                TF2-204 på campus Ås der idéer blir til prototyper.
+              </p>
+              <p className="text-m mt-7 max-w-2xl text-storm-70 lg:text-l">
+                Studenter fra alle fakulteter jobber her med egne prosjekter —
+                fra eksoskjelett og antidrone-turret til tradingbot og
+                agritech. Studentmentorene våre veileder innen robotikk, data
+                og indøk, og du trenger ikke være ferdigstuderert eller ha en
+                forretningsplan for å komme i gang.
+              </p>
+            </div>
+          </div>
+
+          <div className="mx-auto mt-14 grid max-w-6xl items-end gap-x-5 gap-y-8 sm:grid-cols-12">
+            <figure className="sm:col-span-5">
+              <Foto
+                navn="verksted"
+                alt="Verkstedet på Eik Lab"
+                ratio="3/4"
+                plassholderTekst="verktøy og 3D-printere i labben"
+              />
+              <figcaption className="text-xs-italic mt-2.5 text-storm-50">
+                Verkstedet i TF2-204.
+              </figcaption>
+            </figure>
+            <figure className="sm:col-span-3">
+              <Foto
+                navn="folka"
+                alt="Studenter på Eik Lab"
+                ratio="1/1"
+                plassholderTekst="studenter i samtale rundt et bord"
+              />
+              <figcaption className="text-xs-italic mt-2.5 text-storm-50">
+                Folka på labben.
+              </figcaption>
+            </figure>
+            <figure className="sm:col-span-4">
+              <Foto
+                navn="workshop"
+                alt="Workshop på Eik Lab"
+                ratio="3/2"
+                plassholderTekst="workshop med post-it og skisser"
+              />
+              <figcaption className="text-xs-italic mt-2.5 text-storm-50">
+                Workshop med studentmentorene.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        {/* ── Prosjekter ─────────────────────────────────────── */}
+        <section className="px-6 pb-20 lg:px-16 lg:pb-28">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 border-y border-black/15 py-4">
+              <h2 className="title-xs text-black sm:title-s">Prosjektene</h2>
+              <Link
+                href="/prosjekter"
+                className="tag-s-bold underline decoration-eik-50 decoration-2 underline-offset-4 transition-colors hover:text-eik-60"
+              >
+                Alle prosjektene &rarr;
+              </Link>
+            </div>
+
+            <Link
+              href={`/prosjekter/${fremhevet.slug}`}
+              className="group mt-10 grid items-center gap-8 lg:grid-cols-12"
+            >
+              <Foto
+                navn={`prosjekt-${fremhevet.slug}`}
+                alt={fremhevet.title}
+                ratio="3/2"
+                sizes="(min-width: 1280px) 640px, 100vw"
+                className="lg:col-span-7"
+                plassholderTekst={`${fremhevet.title} under arbeid`}
+              />
+              <div className="lg:col-span-5">
+                <p className="kicker text-eik-60">Fremhevet prosjekt</p>
+                <h3 className="text-xl-bold mt-3 text-black transition-colors group-hover:text-eik-60 lg:text-xxl-bold">
+                  {fremhevet.title}
+                </h3>
+                <p className="text-m mt-4 text-storm-70">{fremhevet.ingress}</p>
+                <p className="text-s mt-4 text-storm-50">
+                  {fremhevet.tag} &middot; {fremhevet.status}
+                  {fremhevet.mentorer?.length
+                    ? ` · Mentorer: ${fremhevet.mentorer.join(", ")}`
+                    : ""}
+                </p>
+                <span className="tag-s-bold mt-6 inline-block text-black underline decoration-eik-50 decoration-2 underline-offset-4 transition-colors group-hover:text-eik-60">
+                  Les mer &rarr;
+                </span>
+              </div>
+            </Link>
+
+            <ul className="mt-12 border-t border-black/15">
+              {resten.slice(0, 2).map((p) => (
+                <li key={p.slug} className="border-b border-black/15">
+                  <Link
+                    href={`/prosjekter/${p.slug}`}
+                    className="group flex items-center gap-6 px-2 py-5 transition-colors hover:bg-white sm:gap-8"
+                  >
+                    <Foto
+                      navn={`prosjekt-${p.slug}`}
+                      alt={p.title}
+                      ratio="1/1"
+                      sizes="128px"
+                      className="w-24 shrink-0 sm:w-32"
+                      plassholderTekst={p.title}
+                    />
+                    <span className="min-w-0">
+                      <span className="text-m-bold block truncate text-black transition-colors group-hover:text-eik-60 lg:text-l-bold">
+                        {p.title}
+                      </span>
+                      <span className="text-s mt-1 line-clamp-2 text-storm-70">
+                        {p.ingress}
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="text-l ml-auto shrink-0 text-storm-40 opacity-0 transition-all group-hover:translate-x-1 group-hover:text-eik-60 group-hover:opacity-100"
+                    >
+                      &rarr;
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── Muligheter ─────────────────────────────────────── */}
+        <section className="px-6 pb-20 lg:px-16 lg:pb-28">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-3">
+              <p className="kicker text-black/50">Hva får du her?</p>
+            </div>
+            <div className="lg:col-span-9">
+              <Muligheter />
+            </div>
+          </div>
+        </section>
+
+        {/* ── Arrangementer ──────────────────────────────────── */}
+        <section className="px-6 pb-20 lg:px-16 lg:pb-28">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 border-y border-black/15 py-4">
+              <h2 className="title-xs text-black sm:title-s">
+                Det skjer noe
+              </h2>
+              <Link
+                href="/arrangementer"
+                className="tag-s-bold underline decoration-eik-50 decoration-2 underline-offset-4 transition-colors hover:text-eik-60"
+              >
+                Alle arrangementene &rarr;
+              </Link>
+            </div>
+            <ul>
+              {arrangementer.map((a, i) => (
+                <li key={a.slug} className="border-b border-black/15">
+                  <Link
+                    href={`/arrangementer/${a.slug}`}
+                    className="group grid gap-x-8 gap-y-0.5 px-2 py-5 transition-colors hover:bg-white sm:grid-cols-[150px_1fr_auto] sm:items-baseline"
+                  >
+                    <span className="tag-m-bold flex items-center gap-2 text-black">
+                      {i === 0 && (
+                        <span
+                          aria-hidden="true"
+                          className="inline-block h-2 w-2 rounded-full bg-eik-50"
+                        />
+                      )}
+                      {a.date}
+                    </span>
+                    <span className="text-m-bold text-black transition-colors group-hover:text-eik-60">
+                      {a.title}
+                    </span>
+                    <span className="kicker text-black/40">{a.type}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── Video ──────────────────────────────────────────── */}
+        <section className="px-6 pb-24 lg:px-16">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 border-b border-black/15 pb-3">
+              <p className="kicker text-black/50">Labben i bevegelse</p>
+              <p className="text-xs-italic text-storm-50">
+                Et lite glimt fra hverdagen.
+              </p>
+            </div>
+            <div className="mt-8 overflow-hidden bg-black">
               <MuxPlayer
                 streamType="on-demand"
                 playbackId={process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID!}
-                className="aspect-video w-full rounded-2xl sm:rounded-[32px] [--controls:none]"
+                className="aspect-video w-full [--controls:none]"
                 autoPlay
                 muted
                 loop
@@ -102,113 +234,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── About: Hva er Eik Lab? ─────────────────────────── */}
-        <section className="px-6 py-24 lg:px-16">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="title-xs text-black lg:title-m">
-              Hva er<br />Eik Lab?
-            </h2>
-            <p className="text-m mt-6 max-w-3xl text-black/75 lg:text-l">
-              Eik Lab er et senter for studentinnovasjon ved NMBU. Vi er et
-              fellesskap av engasjerte studenter som skaper, eksperimenterer
-              og bygger fremtidens løsninger.
-            </p>
-          </div>
-        </section>
-
-        {/* ── Projects: Prosjekter ───────────────────────────── */}
-        <section className="px-6 py-24 lg:px-16">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="title-xs mb-12 text-black lg:title-m">Prosjekter</h2>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {prosjekter.map((p, i) => (
-                <Link
-                  key={p.slug}
-                  href={`/prosjekter/${p.slug}`}
-                  className={`group flex min-h-[260px] flex-col justify-between rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${tagColors[p.tag] || "bg-eik-80"}`}
-                  style={{ animationDelay: `${i * 100}ms` }}
-                >
-                  <div>
-                    <span className="inline-block rounded-full border border-white/30 px-3 py-1 tag-xs text-white/70">
-                      {p.tag}
-                    </span>
-                    <h3 className="tag-l mt-4 font-bold text-white">{p.title}</h3>
-                    <p className="text-s mt-3 text-white/80">{p.ingress}</p>
-                    {p.mentorer && p.mentorer.length > 0 && (
-                      <p className="tag-xs mt-3 text-white/50">
-                        Mentorer: {p.mentorer.join(", ")}
-                      </p>
-                    )}
-                  </div>
-                  <span className="tag-s mt-6 flex items-center gap-2 font-semibold text-white/90 transition-all group-hover:gap-3">
-                    Les mer →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Opportunities: Muligheter ─────────────────────── */}
-        <section className="bg-storm-5 px-6 py-24 lg:px-16">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="title-xs mb-12 text-black lg:title-m">Muligheter</h2>
-            <div className="grid gap-5 sm:grid-cols-2">
-              {[
-                {
-                  title: "Workshops",
-                  desc: "Lær nye ferdigheter fra eksperter og medstudenter.",
-                },
-                {
-                  title: "Mentorskap",
-                  desc: "Få veiledning fra erfarne gründere og fagfolk.",
-                },
-                {
-                  title: "Nettverk",
-                  desc: "Bygg relasjoner på tvers av fag og årganger.",
-                },
-                {
-                  title: "Finansiering",
-                  desc: "Støtte til å realisere dine idéer og prosjekter.",
-                },
-              ].map(({ title, desc }) => (
-                <div key={title} className="rounded-3xl bg-white p-8 shadow-s">
-                  <h3 className="tag-l-bold text-eik-70">{title}</h3>
-                  <p className="text-m mt-3 text-black/70">{desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Events: Arrangementer ─────────────────────────── */}
-        <section className="px-6 py-24 lg:px-16">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="title-xs mb-12 text-black lg:title-m">
-              Arrangementer
-            </h2>
-            <div className="flex flex-col gap-4">
-              {arrangementer.map((a) => (
-                <Link
-                  key={a.slug}
-                  href={`/arrangementer/${a.slug}`}
-                  className="group flex flex-col gap-4 rounded-3xl bg-white px-8 py-6 shadow-s transition-all duration-300 hover:-translate-y-0.5 hover:shadow-m hover:bg-eik-70 sm:flex-row sm:items-center sm:gap-8"
-                >
-                  <span className="tag-l-bold w-24 shrink-0 text-eik-70 group-hover:text-eik-30">
-                    {a.date}
-                  </span>
-                  <span className="tag-l-bold flex-1 text-black group-hover:text-white">
-                    {a.title}
-                  </span>
-                  <span className="tag-s text-black/60 group-hover:text-white/60">
-                    Eik Lab, Ås
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
+        <Cta />
       </main>
 
       <Footer />
