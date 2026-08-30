@@ -32,8 +32,6 @@ interface FotoProps {
   priority?: boolean;
   /** Duotone-behandling (sort/hvitt med grønn tone). På som standard. */
   behandlet?: boolean;
-  /** Tekst som vises i placeholderen før ekte foto ligger på plass */
-  plassholderTekst?: string;
 }
 
 export function Foto({
@@ -43,8 +41,7 @@ export function Foto({
   className,
   sizes = "(min-width: 1280px) 1152px, 100vw",
   priority = false,
-  behandlet = true,
-  plassholderTekst,
+  behandlet = false,
 }: FotoProps) {
   const src = finnFoto(navn);
 
@@ -72,12 +69,6 @@ export function Foto({
           <span className="absolute right-2 top-2 h-3 w-3 border-r border-t border-black/30" />
           <span className="absolute bottom-2 left-2 h-3 w-3 border-b border-l border-black/30" />
           <span className="absolute bottom-2 right-2 h-3 w-3 border-b border-r border-black/30" />
-          <span className="relative flex flex-col items-center gap-1.5 px-8 text-center">
-            <span className="text-m-italic text-storm-60">
-              Foto: {plassholderTekst ?? alt}
-            </span>
-            <span className="kicker text-black/35">public/foto/{navn}.jpg</span>
-          </span>
         </div>
       )}
     </figure>

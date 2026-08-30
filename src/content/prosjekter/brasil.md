@@ -1,5 +1,5 @@
 ---
-title: Brasil-prosjektet
+title: Brasil-prosjekter
 tag: Landbruk
 status: Aktiv
 slug: brasil

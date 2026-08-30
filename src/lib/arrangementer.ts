@@ -25,6 +25,31 @@ export interface Arrangement extends ArrangementFrontmatter {
 
 const contentDir = path.join(process.cwd(), "src/content/arrangementer");
 
+/** Deler «2. okt 2026» inn i deler for magasin-stil datovisning. */
+export function parseDato(dato: string): {
+  dag: string;
+  maaned: string;
+  aar?: string;
+} | null {
+  const parts = dato.match(/(\d+)\.\s*(\w+)\s*(\d{4})?/);
+  if (!parts) return null;
+  return { dag: parts[1], maaned: parts[2].toLowerCase(), aar: parts[3] };
+}
+
+function tilSorterbarDato(d: string): number {
+  const parsed = parseDato(d);
+  if (!parsed) return 0;
+  const months: Record<string, number> = {
+    jan: 1, feb: 2, mar: 3, apr: 4, mai: 5, jun: 6,
+    jul: 7, aug: 8, sep: 9, okt: 10, nov: 11, des: 12,
+  };
+  const maned = months[parsed.maaned] || 0;
+  const ar = parsed.aar
+    ? Number.parseInt(parsed.aar)
+    : new Date().getFullYear();
+  return ar * 10000 + maned * 100 + Number.parseInt(parsed.dag);
+}
+
 export function getAllArrangementer(): Arrangement[] {
   const filer = fs.readdirSync(contentDir).filter((f) => f.endsWith(".md"));
 
@@ -34,21 +59,9 @@ export function getAllArrangementer(): Arrangement[] {
       const { data, content } = matter(raw);
       return { ...(data as ArrangementFrontmatter), content } as Arrangement;
     })
-    .sort((a, b) => {
-      const parseDate = (d: string) => {
-        const parts = d.match(/(\d+)\.\s*(\w+)\s*(\d{4})?/);
-        if (!parts) return 0;
-        const months: Record<string, number> = {
-          jan: 1, feb: 2, mar: 3, apr: 4, mai: 5, jun: 6,
-          jul: 7, aug: 8, sep: 9, okt: 10, nov: 11, des: 12,
-        };
-        const dag = Number.parseInt(parts[1]);
-        const maned = months[parts[2].toLowerCase()] || 0;
-        const ar = parts[3] ? Number.parseInt(parts[3]) : 2026;
-        return ar * 10000 + maned * 100 + dag;
-      };
-      return parseDate(a.date) - parseDate(b.date);
-    });
+    .sort(
+      (a, b) => tilSorterbarDato(a.date) - tilSorterbarDato(b.date)
+    );
 }
 
 export function getArrangement(slug: string): Arrangement | undefined {

@@ -3,7 +3,7 @@ title: Soundsensing
 tag: Sensor
 status: Spin-off
 slug: soundsensing
-ingress: Akustisk analyse for smarte bygg. Ble til Soundsensing.
+ingress: Akustisk analyse for smarte bygg.
 spinOff: Soundsensing
 ---
 

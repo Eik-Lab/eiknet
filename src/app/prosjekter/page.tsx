@@ -6,7 +6,7 @@ import { getAllProsjekter } from "@/lib/prosjekter";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Prosjekter | Eik Lab",
+  title: "Prosjekter",
   description:
     "Utforsk studentprosjekter ved Eik Lab — fra miljøteknologi og deep tech til digitale tjenester.",
 };
@@ -18,16 +18,15 @@ export default function ProsjekterPage() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main id="hovedinnhold" className="flex-1">
         <section className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="kicker text-black/50">Prosjekter</p>
+            {/* <p className="kicker text-black/50">Prosjekter</p> */}
             <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
-              På benken akkurat nå
+              Nåværende prosjekter
             </h1>
             <p className="text-xl mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
-              Alt som bygges på labben startet som en idé noen hadde på et
-              kaffebord. Her er det som lever nå.
+              EIK LAB har prosjekter innenfor mange disipliner. Ta en titt!
             </p>
           </div>
         </section>
@@ -44,7 +43,6 @@ export default function ProsjekterPage() {
                 ratio="3/2"
                 sizes="(min-width: 1280px) 640px, 100vw"
                 className="lg:col-span-7"
-                plassholderTekst={`${fremhevet.title} under arbeid`}
               />
               <div className="lg:col-span-5">
                 <p className="kicker text-eik-60">Fremhevet</p>

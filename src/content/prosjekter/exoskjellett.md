@@ -2,6 +2,7 @@
 title: Exoskjellett
 tag: Robotikk
 status: Aktiv
+landing: true
 slug: exoskjellett
 ingress: Utvikling av et bærbart eksoskjelett for å assistere og forsterke menneskelig bevegelse.
 ---

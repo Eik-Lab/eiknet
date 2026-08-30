@@ -3,22 +3,22 @@ import Link from "next/link";
 const muligheter = [
   {
     tittel: "Workshops",
-    tekst: "Praktiske kvelder i alt fra design thinking til elektronikk — holdt av studenter og gjester.",
+    tekst: "Praktiske kvelder i alt fra design thinking til elektronikk, holdt av studenter og gjester.",
     href: "/arrangementer",
   },
   {
     tittel: "Mentorer",
-    tekst: "Ni studentmentorer innen robotikk, data og indøk som selv har vært gjennom prosjektarbeid.",
+    tekst: "Studentmentorer fra ulike studier hjelper deg i gang med alt fra koding og elektronikk til CAD og design.",
     href: "/mentorer",
   },
   {
     tittel: "Nettverk",
-    tekst: "Studenter på tvers av fag og årganger, med NMBU-miljøet rett utenfor døra.",
+    tekst: "Bli kjent med studenter med samme interesser, og sett teori i praksis.",
     href: "/om",
   },
   {
     tittel: "Finansiering",
-    tekst: "Støtte til materialer og utstyr, slik at en god idé ikke stopper på budsjettet.",
+    tekst: "Vi har materialer og utstyr. Har du en idé?",
     href: "/kontakt",
   },
 ];
