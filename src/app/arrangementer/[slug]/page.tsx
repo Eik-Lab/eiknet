@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { Prose } from "@/components/content/prose";
 import { getAllSlugs, getArrangement } from "@/lib/arrangementer";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const arr = getArrangement(slug);
   if (!arr) return {};
   return {
-    title: `${arr.title} | Eik Lab`,
+    title: arr.title,
     description: arr.ingress,
   };
 }
@@ -33,7 +33,7 @@ export default async function ArrangementSide({ params }: Props) {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main id="hovedinnhold" className="flex-1">
         <article className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-3xl">
             <Link
@@ -42,7 +42,7 @@ export default async function ArrangementSide({ params }: Props) {
             >
               &larr; Alle arrangementene
             </Link>
-            <p className="kicker mt-8 text-eik-60">
+            <p className="kicker mt-8 tabular-nums text-eik-60">
               {arr.type} &middot; {arr.date} &middot; {arr.time}
             </p>
             <h1 className="title-xs mt-4 text-black lg:title-m">{arr.title}</h1>
@@ -74,9 +74,7 @@ export default async function ArrangementSide({ params }: Props) {
             </div>
           </div>
 
-          <div className="prose prose-lg mx-auto max-w-3xl py-14 prose-headings:font-sans prose-headings:text-black prose-headings:mt-10 prose-headings:mb-4 prose-p:text-storm-70 prose-p:leading-relaxed prose-ul:text-storm-70 prose-li:leading-relaxed">
-            <ReactMarkdown>{arr.content}</ReactMarkdown>
-          </div>
+          <Prose>{arr.content}</Prose>
         </article>
       </main>
       <Footer />

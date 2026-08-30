@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { validerMentorer } from "@/lib/mentorer";
 
 export type ProsjektStatus = "Aktiv" | "Prototype" | "Idé";
 
@@ -8,6 +9,9 @@ export interface ProsjektFrontmatter {
   title: string;
   tag: string;
   status: ProsjektStatus;
+  fremhevet?: boolean;
+  /** Vis prosjektet på landingssidens «Prosjektene»-seksjon. */
+  landing?: boolean;
   slug: string;
   ingress: string;
   mentorer?: string[];
@@ -26,9 +30,21 @@ export function getAllProsjekter(): Prosjekt[] {
     .map((fil) => {
       const raw = fs.readFileSync(path.join(contentDir, fil), "utf-8");
       const { data, content } = matter(raw);
-      return { ...(data as ProsjektFrontmatter), content } as Prosjekt;
+      const frontmatter = data as ProsjektFrontmatter;
+      if (frontmatter.mentorer) {
+        validerMentorer(frontmatter.mentorer);
+      }
+      return { ...frontmatter, content } as Prosjekt;
     })
-    .sort((a, b) => a.title.localeCompare(b.title, "nb"));
+    .sort((a, b) => {
+      // Fremhevet først (blir det store kortet), så landing-prosjekter,
+      // så alfabetisk.
+      if (a.fremhevet && !b.fremhevet) return -1;
+      if (!a.fremhevet && b.fremhevet) return 1;
+      if (a.landing && !b.landing) return -1;
+      if (!a.landing && b.landing) return 1;
+      return a.title.localeCompare(b.title, "nb");
+    });
 }
 
 export function getProsjekt(slug: string): Prosjekt | undefined {

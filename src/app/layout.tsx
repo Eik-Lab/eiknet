@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Archivo, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/next';
+import { Preloader } from "@/components/layout/preloader";
+import { basisUrl } from "@/lib/site";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -19,10 +21,21 @@ const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
+const baseUrl = basisUrl;
+
 export const metadata: Metadata = {
-  title: "Eik Lab — Senter for studentinnovasjon",
+  metadataBase: baseUrl,
+  title: {
+    default: "Eik Lab — Senter for studentinnovasjon",
+    template: "%s | Eik Lab",
+  },
   description:
     "Eik Lab er Senter for studentinnovasjon ved NMBU på Ås. Vi gir studenter verktøyene de trenger for å utforske, prototype og realisere idéer.",
+  openGraph: {
+    type: "website",
+    locale: "nb_NO",
+    siteName: "Eik Lab",
+  },
 };
 
 export default function RootLayout({
@@ -36,6 +49,13 @@ export default function RootLayout({
       className={`${archivo.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <a
+          href="#hovedinnhold"
+          className="tag-s-bold sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-black focus:px-4 focus:py-2 focus:text-krem"
+        >
+          Hopp til innhold
+        </a>
+        <Preloader />
         {children}
         <Analytics />
       </body>

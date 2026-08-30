@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/header";
 import { getAllAlumni } from "@/lib/alumni";
 
 export const metadata: Metadata = {
-  title: "Alumni | Eik Lab",
+  title: "Alumni",
   description:
     "Tidligere prosjekter fra Eik Lab som har blitt til egne bedrifter.",
 };
@@ -15,16 +15,15 @@ export default function AlumniPage() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main id="hovedinnhold" className="flex-1">
         <section className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="kicker text-black/50">Alumni</p>
+            {/* <p className="kicker text-black/50">Alumni</p> */}
             <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
               Fra studentprosjekt til selskap
             </h1>
             <p className="text-xl mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
-              Noen av prosjektene som startet på benken her, eksisterer i dag
-              som egne selskaper. Det er ikke planen for alle — men det skjer.
+              Flere studenter har startet egne, vellykkede bedrifter hos oss. For eksempel Sensorita, Soundsensing og LiTech, som alle bruker banebrytende teknologi til å løse store miljø- og samfunnsmessige utfordringer. Hvis du har en god idé, kan du også få mulighet til å utvikle den som en del av masteroppgaven din. 
             </p>
           </div>
         </section>
@@ -43,10 +42,10 @@ export default function AlumniPage() {
                       <h2 className="text-xl-bold mt-2 text-black lg:text-xxl-bold">
                         {a.spinOff}
                       </h2>
-                      <p className="text-s mt-2 text-storm-50">
+                      {/* <p className="text-s mt-2 text-storm-50">
                         Startet som prosjektet &laquo;{a.title}&raquo; på Eik
                         Lab.
-                      </p>
+                      </p> */}
                       <p className="text-m mt-3 max-w-2xl text-storm-70">
                         {a.ingress}
                       </p>

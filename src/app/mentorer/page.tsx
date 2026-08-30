@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/header";
 import { mentorer } from "@/lib/mentorer";
 
 export const metadata: Metadata = {
-  title: "Mentorer | Eik Lab",
+  title: "Mentorer",
   description:
     "Mentorer og veiledere ved Eik Lab — fagpersoner fra akademia og næringsliv som støtter studentenes innovasjonsprosjekter.",
 };
@@ -13,17 +13,17 @@ export default function MentorerPage() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main id="hovedinnhold" className="flex-1">
         <section className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="kicker text-black/50">Mentorene</p>
+            {/* <p className="kicker text-black/50">Mentorene</p> */}
             <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
-              De som har vært gjennom det før
+              Mentorene
             </h1>
             <p className="text-xl mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
-              Ni studenter innen robotikk, indøk og datavitenskap stiller som
-              mentorer. De har ikke alle svarene — men de vet som regel hvem
-              som har dem.
+              Studenter innen robotikk, indøk og datavitenskap stiller som
+              mentorer. De hjelper deg med å komme i gang, og komme deg videre 
+              hvis du står fast.
             </p>
           </div>
         </section>

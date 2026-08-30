@@ -3,7 +3,7 @@ title: LiTech
 tag: Deep tech
 status: Spin-off
 slug: litech
-ingress: Neste generasjons batteriteknologi. Prosjektet ble til selskapet LiTech.
+ingress: Neste generasjons batteriteknologi.
 spinOff: LiTech
 ---
 

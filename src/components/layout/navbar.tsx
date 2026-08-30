@@ -21,10 +21,10 @@ export function Navbar() {
   return (
     <>
       <nav className="flex w-full items-center justify-between px-6 py-4 md:px-12 lg:px-16">
-        <Link href="/">
+        <Link href="/" aria-label="Eik Lab — forsiden">
           <Image
             src="/spiregronn.svg"
-            alt="Eik Lab"
+            alt=""
             width={27}
             height={36}
             className="h-[36px] w-auto"
@@ -38,9 +38,10 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={isActive ? "page" : undefined}
                 className={`tag-m transition-colors ${
                   isActive
-                    ? "font-bold text-black"
+                    ? "font-bold text-black underline decoration-eik-50 decoration-2 underline-offset-8"
                     : "text-black/60 hover:text-black"
                 }`}
               >
@@ -52,7 +53,8 @@ export function Navbar() {
         <button
           className="flex flex-col gap-1.5 p-3 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label={mobileOpen ? "Lukk meny" : "Åpne meny"}
+          aria-expanded={mobileOpen}
         >
           <span
             className={`block h-0.5 w-6 bg-black transition-transform ${
@@ -72,17 +74,23 @@ export function Navbar() {
         </button>
       </nav>
       {mobileOpen && (
-        <div className="absolute left-0 right-0 top-full flex flex-col gap-4 border-b border-black/5 bg-white/90 px-8 py-6 shadow-lg backdrop-blur-md">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="tag-m py-3 text-black/80"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div className="absolute left-0 right-0 top-full flex flex-col border-b border-black/15 bg-krem">
+          {links.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`tag-m border-t border-black/10 px-6 py-4 first:border-t-0 ${
+                  isActive ? "font-bold text-black" : "text-storm-70"
+                }`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </>

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Foto } from "@/components/media/foto";
+import { Prose } from "@/components/content/prose";
 import { getAllProsjekter, getProsjekt } from "@/lib/prosjekter";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const prosjekt = getProsjekt(slug);
   if (!prosjekt) return {};
   return {
-    title: `${prosjekt.title} | Eik Lab`,
+    title: prosjekt.title,
     description: prosjekt.ingress,
   };
 }
@@ -39,7 +39,7 @@ export default async function ProsjektSide({ params }: Props) {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main id="hovedinnhold" className="flex-1">
         <article className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-3xl">
             <Link
@@ -68,13 +68,10 @@ export default async function ProsjektSide({ params }: Props) {
               alt={prosjekt.title}
               ratio="16/9"
               priority
-              plassholderTekst={`${prosjekt.title} under arbeid`}
             />
           </div>
 
-          <div className="prose prose-lg mx-auto max-w-3xl py-14 prose-headings:font-sans prose-headings:text-black prose-headings:mt-10 prose-headings:mb-4 prose-p:text-storm-70 prose-p:leading-relaxed prose-ul:text-storm-70 prose-li:leading-relaxed">
-            <ReactMarkdown>{prosjekt.content}</ReactMarkdown>
-          </div>
+          <Prose>{prosjekt.content}</Prose>
         </article>
 
         <nav

@@ -10,8 +10,8 @@ export function Cta() {
             Kom innom, bygg det.
           </h2>
           <p className="text-l mt-5 text-white/70">
-            Fra første skisse til fungerende prototype. Du finner oss i
-            TF2-204 på campus Ås — eller send noen linjer, så tar vi en kaffe.
+            Usikker på hvor du skal starte? Kom innom på
+            TF2-204, eller send en e-post, så tar vi det derfra!
           </p>
         </div>
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">

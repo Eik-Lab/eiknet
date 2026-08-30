@@ -3,7 +3,7 @@ title: Sensorita
 tag: Miljø
 status: Spin-off
 slug: sensorita
-ingress: Sensorbasert overvåking av avfallshåndtering. Ble til Sensorita AS.
+ingress: Sensorbasert overvåking av avfallshåndtering.
 spinOff: Sensorita AS
 ---
 

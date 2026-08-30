@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 
 export const metadata: Metadata = {
-  title: "Kontakt | Eik Lab",
+  title: "Kontakt",
   description:
     "Kontakt Eik Lab — senter for studentinnovasjon ved NMBU. Finn oss i Kajaveien 7 på Ås.",
 };
@@ -12,16 +12,16 @@ export default function KontaktPage() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main id="hovedinnhold" className="flex-1">
         <section className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="kicker text-black/50">Kontakt</p>
+           {/* <p className="kicker text-black/50">Kontakt</p> */}
             <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
-              Kom innom, eller skriv
+              Kontakt oss, eller kom innom!
             </h1>
             <p className="text-xl mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
-              Har du en idé, et spørsmål — eller bare lyst til å se hva som
-              står på benken? Meld deg gjerne på et arrangement først, det er
+              Har du en idé, et spørsmål eller bare lyst til å se hva som
+              skjer? Meld deg gjerne på et arrangement først, det er
               den enkleste veien inn.
             </p>
           </div>
@@ -51,7 +51,7 @@ export default function KontaktPage() {
               <address className="text-m mt-3 not-italic leading-relaxed text-storm-70">
                 Eik Lab, TF2-204
                 <br />
-                Kajaveien 7, 1430 Ås
+                Kajaveien 7, 1433 Ås
               </address>
               <p className="text-s mt-2 text-storm-50">
                 Døra er på andre etasje i TF-bygget. Er den låst, spør en av

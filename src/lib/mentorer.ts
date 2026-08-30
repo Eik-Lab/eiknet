@@ -16,7 +16,7 @@ export const mentorer: Mentor[] = [
     name: "Jørgen Asmundvaag",
     field: "Anvendt robotikk - Robotprogrammering",
     url: "https://www.nmbu.no/studier/master-5-aar/anvendt-robotikk",
-    bio: "Student og robotikk-entusiast. Bistår prosjekter med mekatronikk, sensorintegrering og automasjon.",
+    bio: "Student og designinteressert. Bistår prosjekter med mekatronikk, UI og UX.",
   },
   {
     name: "Ludvik Høibjerg-Aslaksen",
@@ -28,7 +28,7 @@ export const mentorer: Mentor[] = [
     name: "Christopher Ljosland Strand",
     field: "Anvendt robotikk - Robotprogrammering",
     url: "https://www.nmbu.no/studier/master-5-aar/anvendt-robotikk",
-    bio: "Student med lidenskap for robotikk. Hjelper andre studenter med å komme i gang med hardware-prosjekter og robotplattformer.",
+    bio: "Student med lidenskap for robotikk og programmering. Hjelper andre studenter med å komme i gang med hardware-prosjekter og robotplattformer.",
   },
   {
     name: "Frederic Ljosland Strand",
@@ -52,7 +52,7 @@ export const mentorer: Mentor[] = [
     name: "Milad Tootoonchi",
     field: "Datavitenskap",
     url: "https://www.nmbu.no/studier/master-5-aar/datavitenskap",
-    bio: "Datavitenskapsstudent med kompetanse innen maskinlæring, dataanalyse og programvareutvikling. Veileder team som trenger teknisk spissing.",
+    bio: "Datavitenskapsstudent med kompetanse innen maskinlæring, dataanalyse og fintech. Veileder team som trenger teknisk spissing.",
   },
   {
     name: "Victor Moneta",
@@ -61,3 +61,18 @@ export const mentorer: Mentor[] = [
     bio: "Indøk-student med erfaring fra CAD og studententreprenørskap. Hjelper team med å validere idéer og finne veien til markedet.",
   },
 ];
+
+const mentorNavn = new Set(mentorer.map((m) => m.name));
+
+/**
+ * Resolver prosjektets mentor-navn mot den kjente mentor-lista. Ukjente navn
+ * beholdes slik de står, men logger et tydelig varsel om mulig stavefeil.
+ */
+export function validerMentorer(navn: string[]): string[] {
+  for (const n of navn) {
+    if (!mentorNavn.has(n)) {
+      console.warn(`Ukjent mentornavn i prosjekt-frontmatter: "${n}"`);
+    }
+  }
+  return navn;
+}

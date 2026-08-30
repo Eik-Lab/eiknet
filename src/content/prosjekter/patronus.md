@@ -1,7 +1,9 @@
 ---
 title: Patronus
-tag: Robotikk
+tag: Forsvarsteknologi
 status: Aktiv
+fremhevet: true
+landing: true
 slug: patronus
 ingress: Utvikling av en turret for nedskyting av droner. Prosjektet jobber med måldeteksjon, tracking og presisjon.
 ---
@@ -16,6 +18,7 @@ Patronus er et antidroneprosjekt som utvikler en automatisert turret for å dete
 - Presisjonstracking av bevegelige mål
 - Mekatronisk design av turret
 - Sanntids beslutningssystem
+- Elektronikk og PCB-design
 
 ## Team
 

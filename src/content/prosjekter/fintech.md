@@ -2,8 +2,10 @@
 title: Fintech
 tag: Finans
 status: Aktiv
+landing: true
 slug: fintech
 ingress: Tradingbot med Alpaca API. Utvikling av automatiserte handelsstrategier og sanntids markedsanalyse.
+mentorer: [Milad Tootoonchi]
 ---
 
 ## Om prosjektet
