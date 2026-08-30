@@ -7,7 +7,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Arrangementer",
   description:
-    "Kommende arrangementer ved Eik Lab — workshops, hackathons, gjesteforelesninger og åpen lab.",
+    "Kommende arrangementer ved Eik Lab: workshops, hackathons, gjesteforelesninger og åpen lab.",
 };
 
 export default function ArrangementerPage() {
@@ -33,7 +33,7 @@ export default function ArrangementerPage() {
           <div className="mx-auto max-w-6xl">
             {arrangementer.length === 0 ? (
               <p className="text-s-italic text-storm-50">
-                Ingen planlagte ennå — følg med, eller send oss en mail.
+                Ingen planlagte ennå. Følg med, eller send oss en mail.
               </p>
             ) : (
               <ul>

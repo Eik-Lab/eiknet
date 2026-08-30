@@ -4,7 +4,7 @@ date: 15. sep 2026
 time: 17:00–19:00
 type: Workshop
 slug: workshop-arduino
-ingress: Lær å bruke Arduino til å programmere og styre sensorer, lys, motorer og annen elektronikk — med Ludvik.
+ingress: Lær å bruke Arduino til å programmere og styre sensorer, lys, motorer og annen elektronikk (med Ludvik).
 ---
 
 ## Om workshopen
@@ -19,4 +19,4 @@ En praktisk introduksjon til Arduino. Du lærer å programmere og styre sensorer
 
 ## Praktisk info
 
-Sted: Eik Lab, TF2-204. Utstyr er på plass — ta gjerne med laptop.
+Sted: Eik Lab, TF2-204. Utstyr er på plass, så ta gjerne med laptop.

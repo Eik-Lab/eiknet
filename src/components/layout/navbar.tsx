@@ -21,7 +21,7 @@ export function Navbar() {
   return (
     <>
       <nav className="flex w-full items-center justify-between px-6 py-4 md:px-12 lg:px-16">
-        <Link href="/" aria-label="Eik Lab — forsiden">
+        <Link href="/" aria-label="Eik Lab, forsiden">
           <Image
             src="/spiregronn.svg"
             alt=""

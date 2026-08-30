@@ -4,7 +4,8 @@ date: 19. nov 2026
 time: 17:00–19:00
 type: Workshop
 slug: workshop-frontend
-ingress: Fra skisse til ferdig grensesnitt — lær grunnleggende frontend design og utvikling, med Jørgen.
+ingress: Fra skisse til ferdig grensesnitt. Lær grunnleggende frontend design og utvikling.
+mentor: [Jørgen Asmundvaag]
 ---
 
 ## Om workshopen

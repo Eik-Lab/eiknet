@@ -4,7 +4,7 @@ date: 3. nov 2026
 time: 17:00–19:00
 type: Workshop
 slug: workshop-pcb
-ingress: Lær å designe egne kretskort (PCB) og forstå hvordan elektroniske kretser bygges og produseres — med Håkon.
+ingress: Lær å designe egne kretskort (PCB) og forstå hvordan elektroniske kretser bygges og produseres (med Gabriel).
 ---
 
 ## Om workshopen

@@ -182,7 +182,7 @@ export default function Home() {
               {arrangementer.length === 0 ? (
                 <li className="border-b border-black/15">
                   <p className="text-s-italic px-2 py-5 text-storm-50">
-                    Ingen planlagte ennå — følg med, eller send oss en mail.
+                    Ingen planlagte ennå. Følg med, eller send oss en mail.
                   </p>
                 </li>
               ) : (

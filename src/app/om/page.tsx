@@ -50,7 +50,7 @@ export default function OmPage() {
               <p className="text-m mt-4 text-storm-70">
                 Eik Lab ble etablert fordi studenter manglet et fysisk sted for
                 innovasjon og prototyping på campus Ås. Siden oppstarten har vi
-                hatt alt fra miljøteknologi til digitale tjenester på benken —
+                hatt alt fra miljøteknologi til digitale tjenester på benken,
                 alltid med studenten i førersetet. Flere prosjekter har vokst
                 til egne selskaper.
               </p>

@@ -3,7 +3,7 @@ title: Klimarisiko i matverdikjeder
 tag: NorgesGruppen
 status: Idé
 slug: klimarisiko-i-matverdikjeder
-ingress: Hvordan tørke, flom og ekstremvær treffer ulike råvarer og opprinnelsesland — og hva det betyr for innkjøp og forsyningssikkerhet.
+ingress: Hvordan tørke, flom og ekstremvær treffer ulike råvarer og opprinnelsesland, og hva det betyr for innkjøp og forsyningssikkerhet.
 ---
 
 ## Om prosjektet
@@ -16,7 +16,7 @@ Tørke, flom, hete og ekstremvær påvirker avlinger, kvalitet, tilgjengelighet 
 - Hvilke indikatorer bør inngå i en risikovurdering?
 - Hvordan kobles klimarisiko til innkjøpsstrategi og forsyningssikkerhet?
 
-Kaffe og kakao er et særlig relevant case — gjerne sammenlignet med én annen råvare.
+Kaffe og kakao er et særlig relevant case, gjerne sammenlignet med én annen råvare.
 
 ## Samarbeid
 

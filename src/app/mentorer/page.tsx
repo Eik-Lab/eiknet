@@ -6,7 +6,7 @@ import { mentorer } from "@/lib/mentorer";
 export const metadata: Metadata = {
   title: "Mentorer",
   description:
-    "Mentorer og veiledere ved Eik Lab — fagpersoner fra akademia og næringsliv som støtter studentenes innovasjonsprosjekter.",
+    "Mentorer og veiledere ved Eik Lab: fagpersoner fra akademia og næringsliv som støtter studentenes innovasjonsprosjekter.",
 };
 
 export default function MentorerPage() {

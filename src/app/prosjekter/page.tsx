@@ -8,7 +8,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Prosjekter",
   description:
-    "Utforsk studentprosjekter ved Eik Lab — fra miljøteknologi og deep tech til digitale tjenester.",
+    "Utforsk studentprosjekter ved Eik Lab. Fra miljøteknologi og deep tech til digitale tjenester.",
 };
 
 export default function ProsjekterPage() {
