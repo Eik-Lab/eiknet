@@ -5,6 +5,7 @@ import { Foto } from "@/components/media/foto";
 
 export const metadata: Metadata = {
   title: "Om oss",
+  alternates: { canonical: "/om" },
   description:
     "Eik Lab er senter for studentinnovasjon ved NMBU på Ås. Vi gir studenter verktøy, veiledning og et tverrfaglig miljø for å utforske og realisere idéer.",
 };

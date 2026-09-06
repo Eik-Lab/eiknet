@@ -3,25 +3,20 @@ title: LiTech
 tag: Deep tech
 status: Spin-off
 slug: litech
-ingress: Neste generasjons batteriteknologi.
+ingress: Sensorer som oppdager farlige gjenstander i avfallsstrømmer.
 spinOff: LiTech
 ---
 
 ## Om prosjektet
 
-LiTech utforsket nye materialer og produksjonsmetoder for batterier med høyere kapasitet, lengre levetid og lavere miljøbelastning. Prosjektet startet på Eik Lab og har siden blitt en egen bedrift.
+LiTech utvikler sensorsystemer som oppdager feilsorterte batterier og lystgassbeholdere i avfallsanlegg. Tidlig varsling gjør det mulig å fjerne farlige gjenstander før de skaper brann, eksplosjoner eller skadelige utslipp.
 
-## Forskningsområder
+## Teknologien
 
-- Faststoffbatterier med nye elektrolyttmaterialer
-- Resirkulerbare batteridesign
-- Alternativer til litium basert på natrium
-- Levetidstesting og ytelsesanalyse
-
-## Team
-
-Studentene kom fra kjemi, materialteknologi og fysikk.
+- Oppdager batterier og lystgassbeholdere i avfallsstrømmen
+- Varsler operatører slik at farlige gjenstander kan fjernes
+- Bidrar til tryggere drift og bedre sortering i avfallsanlegg
 
 ## Veien videre
 
-LiTech er i dag et eget selskap som videreutvikler teknologien i samarbeid med forskningsmiljøer ved NMBU.
+LiTech startet som et studentprosjekt ved NMBU og er i dag et eget selskap som videreutvikler teknologien.

@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 
 export const metadata: Metadata = {
   title: "Kontakt",
+  alternates: { canonical: "/kontakt" },
   description:
     "Kontakt Eik Lab, senter for studentinnovasjon ved NMBU. Finn oss i Kajaveien 7 på Ås.",
 };
@@ -21,8 +22,8 @@ export default function KontaktPage() {
             </h1>
             <p className="text-xl mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
               Har du en idé, et spørsmål eller bare lyst til å se hva som
-              skjer? Meld deg gjerne på et arrangement først, det er
-              den enkleste veien inn.
+              skjer? Se arrangementssiden for oppdatert påmeldingsstatus,
+              eller send oss en e-post.
             </p>
           </div>
         </section>

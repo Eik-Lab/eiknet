@@ -25,6 +25,9 @@ const baseUrl = basisUrl;
 
 export const metadata: Metadata = {
   metadataBase: baseUrl,
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Eik Lab. Senter for studentinnovasjon",
     template: "%s | Eik Lab",

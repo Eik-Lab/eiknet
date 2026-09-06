@@ -5,6 +5,7 @@ import { getAllAlumni } from "@/lib/alumni";
 
 export const metadata: Metadata = {
   title: "Alumni",
+  alternates: { canonical: "/alumni" },
   description:
     "Tidligere prosjekter fra Eik Lab som har blitt til egne bedrifter.",
 };

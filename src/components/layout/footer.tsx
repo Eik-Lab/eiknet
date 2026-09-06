@@ -34,6 +34,12 @@ export function Footer() {
             >
               Kontakt
             </Link>
+            <Link
+              href="/personvern"
+              className="text-s mt-1 block text-storm-70 underline decoration-eik-50 decoration-2 underline-offset-4 transition-colors hover:text-eik-60"
+            >
+              Personvern
+            </Link>
           </div>
           <div className="hidden shrink-0 lg:block">
             <BuildingMark className="h-[88px] w-auto opacity-30" />

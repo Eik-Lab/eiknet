@@ -1,5 +1,5 @@
 import Link from "next/link";
-import MuxPlayer from "@mux/mux-player-react";
+import { HeroVideo } from "./hero-video";
 
 export function Hero() {
   return (
@@ -33,14 +33,7 @@ export function Hero() {
         </div>
 
         <div className="mt-8 mx-auto max-w-[1200px] overflow-hidden bg-black">
-          <MuxPlayer
-            streamType="on-demand"
-            playbackId={process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID!}
-            className="aspect-video w-full [--controls:none]"
-            autoPlay
-            muted
-            loop
-          />
+          <HeroVideo playbackId={process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID} />
         </div>
       </div>
     </section>

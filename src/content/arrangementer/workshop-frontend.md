@@ -1,10 +1,11 @@
 ---
 title: "Workshop 4: Frontend design og utvikling"
-date: 19. nov 2026
+date: "2026-11-19"
 time: 17:00–19:00
 type: Workshop
 slug: workshop-frontend
 ingress: Fra skisse til ferdig grensesnitt. Lær grunnleggende frontend design og utvikling.
+pameldingStatus: kommer
 mentor: [Jørgen Asmundvaag]
 ---
 

@@ -8,6 +8,8 @@ export type ArrangementType =
   | "Hackathon"
   | "Presentasjon";
 
+export type PameldingStatus = "kommer" | "åpen" | "drop-in" | "stengt";
+
 export interface ArrangementFrontmatter {
   title: string;
   date: string;
@@ -16,6 +18,7 @@ export interface ArrangementFrontmatter {
   slug: string;
   ingress: string;
   facebookUrl?: string;
+  pameldingStatus: PameldingStatus;
   pameldingUrl?: string;
 }
 
@@ -23,31 +26,90 @@ export interface Arrangement extends ArrangementFrontmatter {
   content: string;
 }
 
+export interface PameldingVisning {
+  tekst: string;
+  url?: string;
+  aktiv: boolean;
+}
+
 const contentDir = path.join(process.cwd(), "src/content/arrangementer");
 
-/** Deler «2. okt 2026» inn i deler for magasin-stil datovisning. */
+const maaneder = [
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "mai",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "okt",
+  "nov",
+  "des",
+] as const;
+
+const isoDatoMonster = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+/** Deler en ISO-dato inn i deler for magasin-stil datovisning. */
 export function parseDato(dato: string): {
   dag: string;
   maaned: string;
-  aar?: string;
+  aar: string;
 } | null {
-  const parts = dato.match(/(\d+)\.\s*(\w+)\s*(\d{4})?/);
+  const parts = dato.match(isoDatoMonster);
   if (!parts) return null;
-  return { dag: parts[1], maaned: parts[2].toLowerCase(), aar: parts[3] };
+  const aar = Number.parseInt(parts[1]);
+  const maaned = Number.parseInt(parts[2]);
+  const dag = Number.parseInt(parts[3]);
+  const kontroll = new Date(Date.UTC(aar, maaned - 1, dag));
+
+  if (
+    kontroll.getUTCFullYear() !== aar ||
+    kontroll.getUTCMonth() !== maaned - 1 ||
+    kontroll.getUTCDate() !== dag
+  ) {
+    return null;
+  }
+
+  return {
+    dag: String(dag),
+    maaned: maaneder[maaned - 1],
+    aar: String(aar),
+  };
 }
 
-function tilSorterbarDato(d: string): number {
-  const parsed = parseDato(d);
-  if (!parsed) return 0;
-  const months: Record<string, number> = {
-    jan: 1, feb: 2, mar: 3, apr: 4, mai: 5, jun: 6,
-    jul: 7, aug: 8, sep: 9, okt: 10, nov: 11, des: 12,
-  };
-  const maned = months[parsed.maaned] || 0;
-  const ar = parsed.aar
-    ? Number.parseInt(parsed.aar)
-    : new Date().getFullYear();
-  return ar * 10000 + maned * 100 + Number.parseInt(parsed.dag);
+/** Formaterer en gyldig ISO-dato som «15. sep 2026». */
+export function formaterDato(dato: string): string {
+  const parsed = parseDato(dato);
+  if (!parsed) return dato;
+  return `${parsed.dag}. ${parsed.maaned} ${parsed.aar}`;
+}
+
+/** Gir kalenderdatoen i Oslo som ISO-dato, uavhengig av serverens tidssone. */
+export function osloDato(referansetid: Date = new Date()): string {
+  const deler = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Oslo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(referansetid);
+  const verdi = Object.fromEntries(deler.map((del) => [del.type, del.value]));
+  return `${verdi.year}-${verdi.month}-${verdi.day}`;
+}
+
+function validerArrangement(arrangement: Arrangement): Arrangement {
+  if (!parseDato(arrangement.date)) {
+    throw new Error(
+      `Ugyldig arrangementsdato for "${arrangement.slug}": bruk YYYY-MM-DD.`
+    );
+  }
+  if (arrangement.pameldingStatus === "åpen" && !arrangement.pameldingUrl) {
+    throw new Error(
+      `Arrangementet "${arrangement.slug}" må ha pameldingUrl når påmeldingen er åpen.`
+    );
+  }
+  return arrangement;
 }
 
 export function getAllArrangementer(): Arrangement[] {
@@ -57,11 +119,62 @@ export function getAllArrangementer(): Arrangement[] {
     .map((fil) => {
       const raw = fs.readFileSync(path.join(contentDir, fil), "utf-8");
       const { data, content } = matter(raw);
-      return { ...(data as ArrangementFrontmatter), content } as Arrangement;
+      return validerArrangement({
+        ...(data as ArrangementFrontmatter),
+        content,
+      } as Arrangement);
     })
-    .sort(
-      (a, b) => tilSorterbarDato(a.date) - tilSorterbarDato(b.date)
-    );
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
+export function getKommendeArrangementer(
+  referansetid: Date = new Date()
+): Arrangement[] {
+  const iDag = osloDato(referansetid);
+  return getAllArrangementer().filter((arrangement) => arrangement.date >= iDag);
+}
+
+export function getTidligereArrangementer(
+  referansetid: Date = new Date()
+): Arrangement[] {
+  const iDag = osloDato(referansetid);
+  return getAllArrangementer()
+    .filter((arrangement) => arrangement.date < iDag)
+    .reverse();
+}
+
+export function erTidligereArrangement(
+  arrangement: Pick<Arrangement, "date">,
+  referansetid: Date = new Date()
+): boolean {
+  return arrangement.date < osloDato(referansetid);
+}
+
+export function getPameldingVisning(
+  arrangement: Pick<
+    Arrangement,
+    "date" | "pameldingStatus" | "pameldingUrl"
+  >,
+  referansetid: Date = new Date()
+): PameldingVisning {
+  if (erTidligereArrangement(arrangement, referansetid)) {
+    return { tekst: "Arrangementet er gjennomført", aktiv: false };
+  }
+
+  switch (arrangement.pameldingStatus) {
+    case "åpen":
+      return {
+        tekst: "Meld deg på",
+        url: arrangement.pameldingUrl,
+        aktiv: true,
+      };
+    case "drop-in":
+      return { tekst: "Drop-in – ingen påmelding", aktiv: false };
+    case "stengt":
+      return { tekst: "Påmeldingen er stengt", aktiv: false };
+    case "kommer":
+      return { tekst: "Påmelding kommer", aktiv: false };
+  }
 }
 
 export function getArrangement(slug: string): Arrangement | undefined {

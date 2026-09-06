@@ -2,13 +2,21 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Prose } from "@/components/content/prose";
-import { getAllSlugs, getArrangement } from "@/lib/arrangementer";
+import {
+  formaterDato,
+  getAllSlugs,
+  getArrangement,
+  getPameldingVisning,
+} from "@/lib/arrangementer";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { canonicalUrl } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -21,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: arr.title,
     description: arr.ingress,
+    alternates: { canonical: canonicalUrl(`/arrangementer/${arr.slug}`) },
   };
 }
 
@@ -29,6 +38,8 @@ export default async function ArrangementSide({ params }: Props) {
   const arr = getArrangement(slug);
 
   if (!arr) notFound();
+
+  const pamelding = getPameldingVisning(arr);
 
   return (
     <>
@@ -43,7 +54,7 @@ export default async function ArrangementSide({ params }: Props) {
               &larr; Alle arrangementene
             </Link>
             <p className="kicker mt-8 tabular-nums text-eik-60">
-              {arr.type} &middot; {arr.date} &middot; {arr.time}
+              {arr.type} &middot; {formaterDato(arr.date)} &middot; {arr.time}
             </p>
             <h1 className="title-xs mt-4 text-black lg:title-m">{arr.title}</h1>
             <p className="text-xl mt-5 border-b border-black/15 pb-8 text-storm-70">
@@ -51,15 +62,19 @@ export default async function ArrangementSide({ params }: Props) {
             </p>
 
             <div className="flex flex-wrap gap-4 pt-8">
-              {arr.pameldingUrl && (
+              {pamelding.aktiv && pamelding.url ? (
                 <a
-                  href={arr.pameldingUrl}
+                  href={pamelding.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="tag-s-bold bg-eik-50 px-8 py-3.5 text-white transition-colors hover:bg-eik-40"
                 >
-                  Meld deg på
+                  {pamelding.tekst}
                 </a>
+              ) : (
+                <p className="tag-s-bold border-2 border-black/15 px-8 py-3.5 text-storm-60">
+                  {pamelding.tekst}
+                </p>
               )}
               {arr.facebookUrl && (
                 <a

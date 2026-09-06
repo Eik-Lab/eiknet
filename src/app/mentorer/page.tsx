@@ -5,6 +5,7 @@ import { mentorer } from "@/lib/mentorer";
 
 export const metadata: Metadata = {
   title: "Mentorer",
+  alternates: { canonical: "/mentorer" },
   description:
     "Mentorer og veiledere ved Eik Lab: fagpersoner fra akademia og næringsliv som støtter studentenes innovasjonsprosjekter.",
 };

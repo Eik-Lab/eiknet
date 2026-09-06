@@ -1,10 +1,11 @@
 ---
 title: "Workshop 1: Arduino"
-date: 15. sep 2026
+date: "2026-09-15"
 time: 17:00–19:00
 type: Workshop
 slug: workshop-arduino
 ingress: Lær å bruke Arduino til å programmere og styre sensorer, lys, motorer og annen elektronikk (med Ludvik).
+pameldingStatus: kommer
 ---
 
 ## Om workshopen
