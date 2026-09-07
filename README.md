@@ -12,8 +12,8 @@ Nettsiden for Eik Lab, senter for studentinnovasjon ved Norges miljø- og biovit
 ## Kom i gang
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Åpne [http://localhost:3000](http://localhost:3000).
@@ -21,7 +21,7 @@ npm run dev
 ## Bygg
 
 ```bash
-npm run build
+pnpm build
 ```
 
 ## Før produksjonssetting
@@ -32,5 +32,5 @@ npm run build
    Vercel. Bruk DNS-postene Vercel oppgir, og la eventuelle Cloudflare-poster
    stå som **DNS only**.
 3. Kontroller og godkjenn teksten på `/personvern` med ansvarlig hos Eik/NMBU.
-4. Kjør `npm run check` og bekreft at preview-deployen ikke viser CSP-brudd i
+4. Kjør `pnpm check` og bekreft at preview-deployen ikke viser CSP-brudd i
    nettleserkonsollen. Preview bruker rapportmodus; produksjon håndhever CSP.
