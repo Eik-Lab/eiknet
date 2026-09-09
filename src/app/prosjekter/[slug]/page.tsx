@@ -6,6 +6,7 @@ import { Prose } from "@/components/content/prose";
 import { getAllProsjekter, getProsjekt } from "@/lib/prosjekter";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { canonicalUrl } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: prosjekt.title,
     description: prosjekt.ingress,
+    alternates: { canonical: canonicalUrl(`/prosjekter/${prosjekt.slug}`) },
   };
 }
 

@@ -4,15 +4,17 @@ import { Hero } from "@/components/home/hero";
 import { Muligheter } from "@/components/home/muligheter";
 import { Cta } from "@/components/home/cta";
 import { Foto } from "@/components/media/foto";
-import { getAllArrangementer } from "@/lib/arrangementer";
+import { formaterDato, getKommendeArrangementer } from "@/lib/arrangementer";
 import { getAllProsjekter } from "@/lib/prosjekter";
 import Link from "next/link";
+
+export const revalidate = 3600;
 
 export default function Home() {
   const prosjekter = getAllProsjekter();
   const [fremhevet, ...resten] = prosjekter;
   const andreProsjekter = resten.filter((p) => p.landing);
-  const arrangementer = getAllArrangementer().slice(0, 3);
+  const arrangementer = getKommendeArrangementer().slice(0, 3);
   return (
     <>
       <Header />
@@ -199,7 +201,7 @@ export default function Home() {
                             className="inline-block h-2 w-2 rounded-full bg-eik-50"
                           />
                         )}
-                        {a.date}
+                        {formaterDato(a.date)}
                       </span>
                       <span className="text-m-bold text-black transition-colors group-hover:text-eik-60">
                         {a.title}

@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Prosjekter",
+  alternates: { canonical: "/prosjekter" },
   description:
     "Utforsk studentprosjekter ved Eik Lab. Fra miljøteknologi og deep tech til digitale tjenester.",
 };

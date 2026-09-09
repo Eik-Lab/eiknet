@@ -1,10 +1,11 @@
 ---
 title: "Workshop 2: CAD"
-date: 8. okt 2026
+date: "2026-10-08"
 time: 17:00–19:00
 type: Workshop
 slug: workshop-cad
 ingress: Lær å designe produkter i CAD og utvikle prototyper fra idé til fysisk modell (med Håkon og Victor).
+pameldingStatus: kommer
 ---
 
 ## Om workshopen

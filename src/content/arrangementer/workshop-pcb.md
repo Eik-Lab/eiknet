@@ -1,10 +1,11 @@
 ---
 title: "Workshop 3: PCB"
-date: 3. nov 2026
+date: "2026-11-03"
 time: 17:00–19:00
 type: Workshop
 slug: workshop-pcb
 ingress: Lær å designe egne kretskort (PCB) og forstå hvordan elektroniske kretser bygges og produseres (med Gabriel).
+pameldingStatus: kommer
 ---
 
 ## Om workshopen
