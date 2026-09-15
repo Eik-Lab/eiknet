@@ -51,7 +51,7 @@ export function HeroVideo({ playbackId }: HeroVideoProps) {
   const visReservebilde = !visVideo;
 
   return (
-    <div className="relative aspect-video w-full bg-black">
+    <div className="relative h-full w-full bg-black">
       {visReservebilde ? (
         <>
           <Image
@@ -59,7 +59,7 @@ export function HeroVideo({ playbackId }: HeroVideoProps) {
             alt="Studenter som jobber sammen på Eik Lab"
             fill
             priority
-            sizes="(min-width: 1280px) 1200px, 100vw"
+            sizes="100vw"
             className="object-cover"
           />
           {playbackId && !feilet && (
