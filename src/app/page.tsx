@@ -4,7 +4,7 @@ import { Hero } from "@/components/home/hero";
 import { Muligheter } from "@/components/home/muligheter";
 import { Cta } from "@/components/home/cta";
 import { Foto } from "@/components/media/foto";
-import { formaterDato, getKommendeArrangementer } from "@/lib/arrangementer";
+import { formaterDatoIntervall, getKommendeArrangementer } from "@/lib/arrangementer";
 import { getAllProsjekter } from "@/lib/prosjekter";
 import Link from "next/link";
 
@@ -171,7 +171,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-wrap items-baseline justify-between gap-x-6 border-y border-black/15 py-4">
               <h2 className="title-xs text-black sm:title-s">
-                Det skjer noe
+                Det skjer på Eik Lab
               </h2>
               <Link
                 href="/arrangementer"
@@ -201,7 +201,7 @@ export default function Home() {
                             className="inline-block h-2 w-2 rounded-full bg-eik-50"
                           />
                         )}
-                        {formaterDato(a.date)}
+                        {formaterDatoIntervall(a.date, a.endDate)}
                       </span>
                       <span className="text-m-bold text-black transition-colors group-hover:text-eik-60">
                         {a.title}

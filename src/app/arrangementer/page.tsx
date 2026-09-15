@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import {
+  formaterDatoIntervall,
   getKommendeArrangementer,
   getTidligereArrangementer,
   parseDato,
@@ -66,12 +67,22 @@ export default function ArrangementerPage() {
                                   title="Neste arrangement"
                                 />
                               )}
-                              {dato.dag}.
+                              {arr.endDate ? (
+                                <span className="text-l-bold">
+                                  {formaterDatoIntervall(arr.date, arr.endDate)}
+                                </span>
+                              ) : (
+                                <>
+                                  {dato.dag}.
+                                </>
+                              )}
                             </span>
-                            <span className="kicker uppercase text-black/50">
-                              {dato.maaned}
-                              {dato.aar ? ` ${dato.aar}` : ""}
-                            </span>
+                            {!arr.endDate && (
+                              <span className="kicker uppercase text-black/50">
+                                {dato.maaned}
+                                {dato.aar ? ` ${dato.aar}` : ""}
+                              </span>
+                            )}
                           </span>
                         ) : (
                           <span className="tag-m-bold text-black">{arr.date}</span>
@@ -121,9 +132,11 @@ export default function ArrangementerPage() {
                           className="group grid gap-x-8 gap-y-1 px-2 py-7 transition-colors hover:bg-white sm:grid-cols-[110px_1fr_auto] sm:items-baseline"
                         >
                           <span className="tag-m-bold text-storm-50">
-                            {dato
-                              ? `${dato.dag}. ${dato.maaned} ${dato.aar}`
-                              : arr.date}
+                            {arr.endDate
+                              ? formaterDatoIntervall(arr.date, arr.endDate)
+                              : dato
+                                ? `${dato.dag}. ${dato.maaned} ${dato.aar}`
+                                : arr.date}
                           </span>
                           <span>
                             <span className="text-l-bold block text-storm-70 transition-colors group-hover:text-eik-60">

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   formaterDato,
+  formaterDatoIntervall,
   getKommendeArrangementer,
   getPameldingVisning,
   getTidligereArrangementer,
@@ -18,6 +19,18 @@ test("parser og formaterer gyldige ISO-datoer", () => {
   assert.equal(formaterDato("2026-09-15"), "15. sep 2026");
   assert.equal(parseDato("2026-02-30"), null);
   assert.equal(parseDato("15. sep 2026"), null);
+});
+
+test("formaterer datointervaller for flerdagersarrangementer", () => {
+  assert.equal(
+    formaterDatoIntervall("2026-11-03", "2026-11-06"),
+    "3.–6. nov 2026"
+  );
+  assert.equal(
+    formaterDatoIntervall("2026-10-05", "2026-11-06"),
+    "5. okt–6. nov 2026"
+  );
+  assert.equal(formaterDatoIntervall("2026-09-15"), "15. sep 2026");
 });
 
 test("bruker kalenderdatoen i Europe/Oslo", () => {
@@ -54,6 +67,7 @@ test("sorterer kommende stigende og tidligere synkende", () => {
       "workshop-arduino",
       "workshop-cad",
       "workshop-pcb",
+      "nbim-hackathon",
       "workshop-frontend",
     ]
   );
@@ -63,10 +77,34 @@ test("sorterer kommende stigende og tidligere synkende", () => {
     ),
     [
       "workshop-frontend",
+      "nbim-hackathon",
       "workshop-pcb",
       "workshop-cad",
       "workshop-arduino",
     ]
+  );
+});
+
+test("beholder flerdagersarrangementet i kommende til sluttdagen er over", () => {
+  const midtIHackathon = new Date("2026-10-20T12:00:00Z");
+
+  assert.equal(
+    getKommendeArrangementer(midtIHackathon).some(
+      (arrangement) => arrangement.slug === "nbim-hackathon"
+    ),
+    true
+  );
+  assert.equal(
+    getTidligereArrangementer(midtIHackathon).some(
+      (arrangement) => arrangement.slug === "nbim-hackathon"
+    ),
+    false
+  );
+  assert.equal(
+    getTidligereArrangementer(new Date("2026-11-07T00:00:00Z")).some(
+      (arrangement) => arrangement.slug === "nbim-hackathon"
+    ),
+    true
   );
 });
 

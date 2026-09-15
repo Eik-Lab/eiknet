@@ -13,7 +13,8 @@ export type PameldingStatus = "kommer" | "åpen" | "drop-in" | "stengt";
 export interface ArrangementFrontmatter {
   title: string;
   date: string;
-  time: string;
+  endDate?: string;
+  time?: string;
   type: ArrangementType;
   slug: string;
   ingress: string;
@@ -86,6 +87,23 @@ export function formaterDato(dato: string): string {
   return `${parsed.dag}. ${parsed.maaned} ${parsed.aar}`;
 }
 
+/** Formaterer et datointervall som «5.–6. nov 2026» eller «5. okt–6. nov 2026». */
+export function formaterDatoIntervall(
+  fra: string,
+  til?: string
+): string {
+  const fraDato = parseDato(fra);
+  if (!fraDato || !til) return formaterDato(fra);
+  const tilDato = parseDato(til);
+  if (!tilDato) return formaterDato(fra);
+
+  if (fraDato.maaned === tilDato.maaned && fraDato.aar === tilDato.aar) {
+    return `${fraDato.dag}.–${tilDato.dag}. ${tilDato.maaned} ${tilDato.aar}`;
+  }
+
+  return `${fraDato.dag}. ${fraDato.maaned}–${tilDato.dag}. ${tilDato.maaned} ${tilDato.aar}`;
+}
+
 /** Gir kalenderdatoen i Oslo som ISO-dato, uavhengig av serverens tidssone. */
 export function osloDato(referansetid: Date = new Date()): string {
   const deler = new Intl.DateTimeFormat("en-CA", {
@@ -102,6 +120,16 @@ function validerArrangement(arrangement: Arrangement): Arrangement {
   if (!parseDato(arrangement.date)) {
     throw new Error(
       `Ugyldig arrangementsdato for "${arrangement.slug}": bruk YYYY-MM-DD.`
+    );
+  }
+  if (arrangement.endDate && !parseDato(arrangement.endDate)) {
+    throw new Error(
+      `Ugyldig sluttdato for "${arrangement.slug}": bruk YYYY-MM-DD.`
+    );
+  }
+  if (arrangement.endDate && arrangement.endDate < arrangement.date) {
+    throw new Error(
+      `Sluttdatoen for "${arrangement.slug}" er før startdatoen.`
     );
   }
   if (arrangement.pameldingStatus === "åpen" && !arrangement.pameldingUrl) {
@@ -127,11 +155,17 @@ export function getAllArrangementer(): Arrangement[] {
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
+function sluttDato(arrangement: Pick<Arrangement, "date" | "endDate">): string {
+  return arrangement.endDate ?? arrangement.date;
+}
+
 export function getKommendeArrangementer(
   referansetid: Date = new Date()
 ): Arrangement[] {
   const iDag = osloDato(referansetid);
-  return getAllArrangementer().filter((arrangement) => arrangement.date >= iDag);
+  return getAllArrangementer().filter(
+    (arrangement) => sluttDato(arrangement) >= iDag
+  );
 }
 
 export function getTidligereArrangementer(
@@ -139,21 +173,21 @@ export function getTidligereArrangementer(
 ): Arrangement[] {
   const iDag = osloDato(referansetid);
   return getAllArrangementer()
-    .filter((arrangement) => arrangement.date < iDag)
+    .filter((arrangement) => sluttDato(arrangement) < iDag)
     .reverse();
 }
 
 export function erTidligereArrangement(
-  arrangement: Pick<Arrangement, "date">,
+  arrangement: Pick<Arrangement, "date" | "endDate">,
   referansetid: Date = new Date()
 ): boolean {
-  return arrangement.date < osloDato(referansetid);
+  return sluttDato(arrangement) < osloDato(referansetid);
 }
 
 export function getPameldingVisning(
   arrangement: Pick<
     Arrangement,
-    "date" | "pameldingStatus" | "pameldingUrl"
+    "date" | "endDate" | "pameldingStatus" | "pameldingUrl"
   >,
   referansetid: Date = new Date()
 ): PameldingVisning {

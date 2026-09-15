@@ -3,7 +3,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Prose } from "@/components/content/prose";
 import {
-  formaterDato,
+  formaterDatoIntervall,
   getAllSlugs,
   getArrangement,
   getPameldingVisning,
@@ -54,7 +54,14 @@ export default async function ArrangementSide({ params }: Props) {
               &larr; Alle arrangementene
             </Link>
             <p className="kicker mt-8 tabular-nums text-eik-60">
-              {arr.type} &middot; {formaterDato(arr.date)} &middot; {arr.time}
+              {arr.type} &middot;{" "}
+              {formaterDatoIntervall(arr.date, arr.endDate)}
+              {arr.time && (
+                <>
+                  {" "}&middot;{" "}
+                  {arr.time}
+                </>
+              )}
             </p>
             <h1 className="title-xs mt-4 text-black lg:title-m">{arr.title}</h1>
             <p className="text-xl mt-5 border-b border-black/15 pb-8 text-storm-70">
