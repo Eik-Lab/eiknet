@@ -7,10 +7,12 @@ import MuxPlayer, {
 import { useRef, useState, useSyncExternalStore } from "react";
 
 interface HeroVideoProps {
-  playbackId?: string;
+  playbackIdDesktop?: string;
+  playbackIdMobile?: string;
 }
 
 const redusertBevegelseQuery = "(prefers-reduced-motion: reduce)";
+const desktopQuery = "(min-width: 768px)";
 
 function abonnerPaBevegelsespreferanse(oppdater: () => void) {
   const mediaQuery = window.matchMedia(redusertBevegelseQuery);
@@ -22,13 +24,32 @@ function lesBevegelsespreferanse() {
   return window.matchMedia(redusertBevegelseQuery).matches;
 }
 
-export function HeroVideo({ playbackId }: HeroVideoProps) {
+function abonnerPaViewport(oppdater: () => void) {
+  const mediaQuery = window.matchMedia(desktopQuery);
+  mediaQuery.addEventListener("change", oppdater);
+  return () => mediaQuery.removeEventListener("change", oppdater);
+}
+
+function lesViewport() {
+  return window.matchMedia(desktopQuery).matches;
+}
+
+export function HeroVideo({ playbackIdDesktop, playbackIdMobile }: HeroVideoProps) {
   const playerRef = useRef<MuxPlayerRefAttributes>(null);
   const redusertBevegelse = useSyncExternalStore(
     abonnerPaBevegelsespreferanse,
     lesBevegelsespreferanse,
     () => true
   );
+  const erDesktop = useSyncExternalStore(
+    abonnerPaViewport,
+    lesViewport,
+    () => true
+  );
+  const playbackId = erDesktop ? playbackIdDesktop : playbackIdMobile;
+  const reservebilde = erDesktop
+    ? "/foto/eiklab-v3-16x9-poster_1.jpg"
+    : "/foto/eiklab-v3-9x16-poster_1.jpg";
   const [brukerHarStartet, setBrukerHarStartet] = useState(false);
   const [spiller, setSpiller] = useState(false);
   const [feilet, setFeilet] = useState(false);
@@ -51,15 +72,15 @@ export function HeroVideo({ playbackId }: HeroVideoProps) {
   const visReservebilde = !visVideo;
 
   return (
-    <div className="relative aspect-video w-full bg-black">
+    <div className="relative h-full w-full bg-black">
       {visReservebilde ? (
         <>
           <Image
-            src="/foto/video-fallback.webp"
+            src={reservebilde}
             alt="Studenter som jobber sammen på Eik Lab"
             fill
             priority
-            sizes="(min-width: 1280px) 1200px, 100vw"
+            sizes="100vw"
             className="object-cover"
           />
           {playbackId && !feilet && (
@@ -76,10 +97,11 @@ export function HeroVideo({ playbackId }: HeroVideoProps) {
       ) : (
         <>
           <MuxPlayer
+            key={playbackId}
             ref={playerRef}
             streamType="on-demand"
             playbackId={playbackId}
-            poster="/foto/video-fallback.webp"
+            poster={reservebilde}
             className="h-full w-full [--controls:none] [--media-object-fit:cover] [--media-poster-image-background-size:cover]"
             autoPlay
             muted

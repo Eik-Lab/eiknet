@@ -6,6 +6,7 @@ landing: true
 slug: fintech
 ingress: Tradingbot med Alpaca API. Utvikling av automatiserte handelsstrategier og sanntids markedsanalyse.
 mentorer: [Milad Tootoonchi]
+youtube: https://www.youtube.com/watch?v=QNg5K4bgPCY&list=PLcyK-duQTFSc
 ---
 
 ## Om prosjektet

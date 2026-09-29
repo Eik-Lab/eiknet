@@ -14,7 +14,7 @@ const links = [
   { href: "/kontakt", label: "Kontakt" },
 ];
 
-export function Navbar() {
+export function Navbar({ transparent }: { transparent: boolean }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -27,7 +27,9 @@ export function Navbar() {
             alt=""
             width={27}
             height={36}
-            className="h-[36px] w-auto"
+            className={`h-[36px] w-auto transition-[filter] duration-300 ${
+              transparent ? "brightness-0 invert" : ""
+            }`}
             priority
           />
         </Link>
@@ -40,9 +42,13 @@ export function Navbar() {
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
                 className={`tag-m transition-colors ${
-                  isActive
-                    ? "font-bold text-black underline decoration-eik-50 decoration-2 underline-offset-8"
-                    : "text-black/60 hover:text-black"
+                  transparent
+                    ? isActive
+                      ? "font-bold text-white underline decoration-eik-50 decoration-2 underline-offset-8"
+                      : "text-white/70 hover:text-white"
+                    : isActive
+                      ? "font-bold text-black underline decoration-eik-50 decoration-2 underline-offset-8"
+                      : "text-black/60 hover:text-black"
                 }`}
               >
                 {link.label}
@@ -57,19 +63,19 @@ export function Navbar() {
           aria-expanded={mobileOpen}
         >
           <span
-            className={`block h-0.5 w-6 bg-black transition-transform ${
-              mobileOpen ? "translate-y-2 rotate-45" : ""
-            }`}
+            className={`block h-0.5 w-6 transition-transform ${
+              transparent ? "bg-white" : "bg-black"
+            } ${mobileOpen ? "translate-y-2 rotate-45" : ""}`}
           />
           <span
-            className={`block h-0.5 w-6 bg-black transition-opacity ${
-              mobileOpen ? "opacity-0" : ""
-            }`}
+            className={`block h-0.5 w-6 transition-opacity ${
+              transparent ? "bg-white" : "bg-black"
+            } ${mobileOpen ? "opacity-0" : ""}`}
           />
           <span
-            className={`block h-0.5 w-6 bg-black transition-transform ${
-              mobileOpen ? "-translate-y-2 -rotate-45" : ""
-            }`}
+            className={`block h-0.5 w-6 transition-transform ${
+              transparent ? "bg-white" : "bg-black"
+            } ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`}
           />
         </button>
       </nav>
