@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Foto } from "@/components/media/foto";
+import { YoutubeEmbed } from "@/components/media/youtube-embed";
 import { Prose } from "@/components/content/prose";
 import { getAllProsjekter, getProsjekt } from "@/lib/prosjekter";
 import Link from "next/link";
@@ -72,6 +73,12 @@ export default async function ProsjektSide({ params }: Props) {
               priority
             />
           </div>
+
+          {prosjekt.youtube && (
+            <div className="mx-auto mt-6 max-w-4xl">
+              <YoutubeEmbed url={prosjekt.youtube} title={prosjekt.title} />
+            </div>
+          )}
 
           <Prose>{prosjekt.content}</Prose>
         </article>

@@ -15,6 +15,8 @@ export interface ProsjektFrontmatter {
   slug: string;
   ingress: string;
   mentorer?: string[];
+  /** Lenke til en YouTube-video som kan spilles av på prosjektsiden. */
+  youtube?: string;
 }
 
 export interface Prosjekt extends ProsjektFrontmatter {

@@ -4,6 +4,7 @@ import { Hero } from "@/components/home/hero";
 import { Muligheter } from "@/components/home/muligheter";
 import { Cta } from "@/components/home/cta";
 import { Foto } from "@/components/media/foto";
+import { Video } from "@/components/media/video";
 import { formaterDatoIntervall, getKommendeArrangementer } from "@/lib/arrangementer";
 import { getAllProsjekter } from "@/lib/prosjekter";
 import Link from "next/link";
@@ -90,10 +91,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <Link
-              href={`/prosjekter/${fremhevet.slug}`}
-              className="group mt-10 grid items-center gap-8 lg:grid-cols-12"
-            >
+            <div className="group relative mt-10 grid items-center gap-8 lg:grid-cols-12">
               <Foto
                 navn={`prosjekt-${fremhevet.slug}`}
                 alt={fremhevet.title}
@@ -104,10 +102,17 @@ export default function Home() {
               <div className="lg:col-span-5">
                 <p className="kicker text-eik-60">Fremhevet prosjekt</p>
                 <h3 className="text-xl-bold mt-3 text-black transition-colors group-hover:text-eik-60 lg:text-xxl-bold">
-                  {fremhevet.title}
+                  <Link
+                    href={`/prosjekter/${fremhevet.slug}`}
+                    className="after:absolute after:inset-0"
+                  >
+                    {fremhevet.title}
+                  </Link>
                 </h3>
-                <p className="text-m mt-4 text-storm-70">{fremhevet.ingress}</p>
-                <p className="text-s mt-4 text-storm-50">
+                <p className="text-m relative z-10 mt-4 text-storm-70">
+                  {fremhevet.ingress}
+                </p>
+                <p className="text-s relative z-10 mt-4 text-storm-50">
                   {fremhevet.tag} &middot; {fremhevet.status}
                   {fremhevet.mentorer?.length
                     ? ` · Mentorer: ${fremhevet.mentorer.join(", ")}`
@@ -117,15 +122,12 @@ export default function Home() {
                   Les mer &rarr;
                 </span>
               </div>
-            </Link>
+            </div>
 
             <ul className="mt-12 border-t border-black/15">
               {andreProsjekter.map((p) => (
                 <li key={p.slug} className="border-b border-black/15">
-                  <Link
-                    href={`/prosjekter/${p.slug}`}
-                    className="group flex items-center gap-6 px-2 py-5 transition-colors hover:bg-white sm:gap-8"
-                  >
+                  <div className="group relative flex items-center gap-6 px-2 py-5 transition-colors hover:bg-white sm:gap-8">
                     <Foto
                       navn={`prosjekt-${p.slug}`}
                       alt={p.title}
@@ -135,9 +137,14 @@ export default function Home() {
                     />
                     <span className="min-w-0">
                       <span className="text-m-bold block truncate text-black transition-colors group-hover:text-eik-60 lg:text-l-bold">
-                        {p.title}
+                        <Link
+                          href={`/prosjekter/${p.slug}`}
+                          className="after:absolute after:inset-0"
+                        >
+                          {p.title}
+                        </Link>
                       </span>
-                      <span className="text-s mt-1 line-clamp-2 text-storm-70">
+                      <span className="text-s relative z-10 mt-1 line-clamp-2 text-storm-70">
                         {p.ingress}
                       </span>
                     </span>
@@ -147,7 +154,7 @@ export default function Home() {
                     >
                       &rarr;
                     </span>
-                  </Link>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -225,12 +232,11 @@ export default function Home() {
               </p> */}
             </div>
             <div className="mt-8">
-              <Foto
-                navn="hero"
+              <Video
+                playbackId={process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID_BUNN}
+                poster="/foto/hero.jpg"
                 alt="Studenter i verkstedet på Eik Lab"
                 ratio="3/2"
-                sizes="100vw"
-                behandlet={false}
               />
             </div>
           </div>

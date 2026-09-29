@@ -22,7 +22,7 @@ export function Header() {
       style={{ viewTransitionName: "site-header" }}
       className={`fixed left-0 right-0 top-0 z-50 flex justify-center transition-[background-color,border-color] duration-300 ${
         transparent
-          ? "border-b border-transparent bg-transparent"
+          ? "border-b border-transparent bg-linear-to-b from-black/50 via-black/15 to-transparent"
           : "border-b border-black/15 bg-krem"
       }`}
     >

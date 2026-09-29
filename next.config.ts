@@ -11,7 +11,7 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob: https://image.mux.com https://*.mux.com",
   "media-src 'self' blob: https://stream.mux.com https://*.mux.com",
   "connect-src 'self' https://*.mux.com https://*.litix.io https://*.vercel-insights.com",
-  "frame-src https://use.mazemap.com",
+  "frame-src https://use.mazemap.com https://www.youtube-nocookie.com",
   "font-src 'self' data:",
   "worker-src 'self' blob:",
 ].join("; ");
@@ -22,6 +22,11 @@ const cspHeader =
     : "Content-Security-Policy-Report-Only";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "i.ytimg.com" },
+    ],
+  },
   async headers() {
     return [
       {
