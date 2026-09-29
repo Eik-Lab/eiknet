@@ -46,7 +46,7 @@ export const mentorer: Mentor[] = [
     name: "Sania Minaipour",
     field: "Indøk data",
     url: "https://github.com/Saniami",
-    bio: "Student i industriell økonomi. Bistår med forretningsmodellering, markedsanalyse og prosjektstyring.",
+    bio: "Jeg hjelper gjerne med å komme i gang med nye prosjekter – fra den første ideen til en konkret plan. Sammen kan vi strukturere ideen, sette konkrete mål og lage en fremdriftsplan dere kan følge. Jeg hjelper også til med å linke dere videre til riktige folk og ressurser, og er tilgjengelig underveis for å bistå med veiledning, slik at dere ikke kjører dere fast.",
   },
   {
     name: "Milad Tootoonchi",
