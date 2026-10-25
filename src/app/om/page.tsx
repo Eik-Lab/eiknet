@@ -19,7 +19,7 @@ export default function OmPage() {
           <div className="mx-auto max-w-6xl">
             {/* <p className="kicker text-black/50">Om oss</p> */}
             <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
-              Et verksted, ikke et kontor
+              Senter for studentinnovasjon
             </h1>
             <p className="text-xl mt-6 max-w-3xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
               Eik Lab er et tverrfaglig innovasjonsmiljø for studenter ved
