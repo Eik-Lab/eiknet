@@ -20,10 +20,10 @@ export default function AlumniPage() {
         <section className="px-6 pt-36 lg:px-16">
           <div className="mx-auto max-w-6xl">
             {/* <p className="kicker text-black/50">Alumni</p> */}
-            <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
+            <h1 className="title-xs mt-4 max-w-2xl text-[clamp(2rem,11vw,2.6875rem)] text-black sm:title-s lg:title-l">
               Fra studentprosjekt til selskap
             </h1>
-            <p className="text-xl mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15 lg:text-xxl">
+            <p className="text-l mt-6 max-w-2xl pb-10 text-storm-70 border-b border-black/15">
               Flere studenter har startet egne, vellykkede bedrifter hos oss. For eksempel Sensorita, Soundsensing og LiTech, som alle bruker banebrytende teknologi til å løse store miljø- og samfunnsmessige utfordringer. Hvis du har en god idé, kan du også få mulighet til å utvikle den som en del av masteroppgaven din. 
             </p>
           </div>

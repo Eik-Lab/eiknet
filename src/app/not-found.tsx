@@ -9,7 +9,7 @@ export default function NotFound() {
       <main id="hovedinnhold" className="flex-1 px-6 pt-36 pb-24 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <p className="kicker text-black/50">Feil 404</p>
-          <h1 className="title-xs mt-4 max-w-3xl text-black sm:title-s lg:title-l">
+          <h1 className="title-xs mt-4 max-w-2xl text-black sm:title-s lg:title-l">
             Denne siden finnes ikke
           </h1>
           <p className="text-xl mt-6 max-w-2xl border-b border-black/15 pb-10 text-storm-70 lg:text-xxl">
