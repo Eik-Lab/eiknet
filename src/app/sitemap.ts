@@ -4,7 +4,7 @@ import { getAllProsjekter } from "@/lib/prosjekter";
 import { basisUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const statiske = ["", "/om", "/prosjekter", "/arrangementer", "/alumni", "/mentorer", "/kontakt", "/personvern"].map(
+  const statiske = ["", "/om", "/prosjekter", "/arrangementer", "/alumni", "/mentorer", "/kontakt", "/personvern", "/arrangementer/workshop-frontend/ressurser"].map(
     (sti) => ({
       url: new URL(sti, basisUrl).toString(),
       changeFrequency: "weekly" as const,
