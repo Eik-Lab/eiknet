@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Foto } from "@/components/media/foto";
 import { YoutubeEmbed } from "@/components/media/youtube-embed";
+import { CadFiler } from "@/components/media/cad-filer";
 import { Prose } from "@/components/content/prose";
 import { getAllProsjekter, getProsjekt } from "@/lib/prosjekter";
 import Link from "next/link";
@@ -77,6 +78,13 @@ export default async function ProsjektSide({ params }: Props) {
           {prosjekt.youtube && (
             <div className="mx-auto mt-6 max-w-4xl">
               <YoutubeEmbed url={prosjekt.youtube} title={prosjekt.title} />
+            </div>
+          )}
+
+          {prosjekt.cad && prosjekt.cad.length > 0 && (
+            <div className="mx-auto mt-10 max-w-4xl">
+              <p className="kicker text-eik-60">CAD-filer</p>
+              <CadFiler filer={prosjekt.cad} className="mt-4" />
             </div>
           )}
 

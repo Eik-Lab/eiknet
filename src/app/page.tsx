@@ -234,7 +234,7 @@ export default function Home() {
             <div className="mt-8">
               <Video
                 playbackId={process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID_BUNN}
-                poster="/foto/hero.jpg"
+                poster="/foto/mentor26.webp"
                 alt="Studenter i verkstedet på Eik Lab"
                 ratio="3/2"
               />

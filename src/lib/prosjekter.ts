@@ -17,6 +17,8 @@ export interface ProsjektFrontmatter {
   mentorer?: string[];
   /** Lenke til en YouTube-video som kan spilles av på prosjektsiden. */
   youtube?: string;
+  /** Stier til CAD-filer (.stl/.glb/.gltf) i public/cad/, vises som 3D-visning. */
+  cad?: string[];
 }
 
 export interface Prosjekt extends ProsjektFrontmatter {
